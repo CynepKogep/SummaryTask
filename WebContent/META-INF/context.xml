@@ -1,0 +1,13 @@
+<Context>
+
+	<Resource name="jdbc/hospitalDB" 
+	auth="Container"
+	type="javax.sql.DataSource"
+	maxTotal="100" maxIdle="30" maxWaitMillis="1000"
+	defaultAutoCommit="false"
+	username="root"
+	password="dima"
+	driverClassName="com.mysql.jdbc.Driver" 
+	url="jdbc:mysql://localhost:3306/hospitaldatabase?useUnicode=true&amp;characterEncoding=UTF-8&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
+	
+</Context>
