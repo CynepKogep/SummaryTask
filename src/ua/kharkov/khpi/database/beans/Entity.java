@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public abstract class Entity implements Serializable{
 	
-	private static final long serialVersionUID = 8466257860808346236L;
+	private static final long serialVersionUID = 8467257860808346237L;
 	
 	private Long id;
 

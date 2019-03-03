@@ -30,13 +30,17 @@ public final class Fields {
 	// TABLE <<ROLE>>
 	public static final String ROLE_NAME         = "role_name";
 	// TABLE <<PROFESSION>>
-	public static final String PROFESSION_NAME   = "profession_name";
+	public static final String PROFESSION_NAME      = "profession_name";
+	public static final String PROFESSION_NAME_RU   = "profession_name_ru";
 	// TABLE <<DIAGNOSIS>>
-	public static final String DIAGNOSIS_NAME    = "diagnosis_name";
+	public static final String DIAGNOSIS_NAME       = "diagnosis_name";
+	public static final String DIAGNOSIS_NAME_RU    = "diagnosis_name_ru";
 	// TABLE <<ASSIGNMENT_STATUS>>
-	public static final String ASSIGNMENT_STATUS = "status_name";
+	public static final String ASSIGNMENT_STATUS    = "status_name";
+	public static final String ASSIGNMENT_STATUS_RU = "status_name_ru";
 	// TABLE <<ASSIGNMENT_TYPE>>
-	public static final String ASSIGNMENT_TYPE   = "type_name";
+	public static final String ASSIGNMENT_TYPE      = "type_name";
+	public static final String ASSIGNMENT_TYPE_RU   = "type_name_ru";
 	// TABLE <<PATIENT_ASSIGNMENT>>
 	public static final String PATIENT_ID           = "patient_id";
 	public static final String ASSIGNMENT_ID        = "assignment_id";

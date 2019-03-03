@@ -5,56 +5,76 @@
 <%-- PAGE ADMIN <<MEDICAL USER>> NUMBER 1 --%> 
 
 <html>
-
     <c:set var="title" value="List orders" scope="page" />
     <%@ include file="/WEB-INF/jspf/head.jspf"%>
 
     <body>
+    	<fmt:message key="settings_jsp.label.localization.value" var="localization_value" />
 	    <table id="main-container">
 		    <%@ include file="/WEB-INF/jspf/header.jspf"%>
-
+            
 		    <tr>
 			    <td class="content">
 				<%-- CONTENT --%> 
 				<div>
 					<div style="display: inline-block">
-						<c:if test="${localization_value == 'ru'}">
+						<c:if test="${localization_value=='ru'}">
 			                Сортировка
 			            </c:if>
-			            <c:if test="${localization_value == 'en'}">
+			            <c:if test="${localization_value=='en'}">
 			                Sorting
 			            </c:if>    
 					</div>
 					<form style="display: inline-block" id="make_order" action="controller">
-						<input type="hidden" name="command" value="listClientPays" /> 
-						<input type="hidden" name="command_number" value="01_number" />
+						<input type="hidden" name="command" value="listMedicalUser" /> 
+						<input type="hidden" name="sorting_order" value="sort_by_id" />
 						<c:if test="${localization_value == 'ru'}">
-							<input type="submit" value='по номеру' />
+							<input type="submit" value='по id' />
 						</c:if>
 						<c:if test="${localization_value == 'en'}">
-							<input type="submit" value='sort number' />
+							<input type="submit" value='sort by id' />
 						</c:if>
 					</form>
 					<form style="display: inline-block" id="make_order" action="controller">
-						<input type="hidden" name="command" value="listClientPays" /> 
-						<input type="hidden" name="command_number" value="02_data" />
+						<input type="hidden" name="command" value="listMedicalUser" /> 
+						<input type="hidden" name="sorting_order" value="sort_by_login" />
 						<c:if test="${localization_value == 'ru'}">
-							<input type="submit" value='по дате' />
+							<input type="submit" value='по логину' />
 						</c:if>
 						<c:if test="${localization_value == 'en'}">
-							<input type="submit" value='sort date' />
+							<input type="submit" value='sort by login' />
 						</c:if>
 					</form>
-
-					<form style="display: inline-block" id="make_order"
-						action="controller">
-						<input type="hidden" name="command" value="listClientPays" /> 
-						<input type="hidden" name="command_number" value="03_data_desc" />
+					<form style="display: inline-block" id="make_order" action="controller">
+						<input type="hidden" name="command" value="listMedicalUser" /> 
 						<c:if test="${localization_value == 'ru'}">
-							<input type="submit" value='по дате (desc)' />
+						    <input type="hidden" name="sorting_order" value="sort_by_lastname_ru" />
+							<input type="submit" value='по фамилии'  />
 						</c:if>
 						<c:if test="${localization_value == 'en'}">
-							<input type="submit" value='sort date desc' />
+						    <input type="hidden" name="sorting_order" value="sort_by_lastname"/>
+							<input type="submit" value='sort by lastname' />
+						</c:if>
+					</form>
+					<form style="display: inline-block" id="make_order" action="controller">
+						<input type="hidden" name="command" value="listMedicalUser" /> 
+						<c:if test="${localization_value == 'ru'}">
+						    <input type="hidden" name="sorting_order" value="sort_by_profession_ru" />
+							<input type="submit" value='по специальности'  />
+						</c:if>
+						<c:if test="${localization_value == 'en'}">
+							<input type="hidden" name="sorting_order" value="sort_by_profession" />
+							<input type="submit" value='sort by profession' />
+						</c:if>
+					</form>
+					<form style="display: inline-block" id="make_order" action="controller">
+						<input type="hidden" name="command" value="listMedicalUser" /> 
+						<input type="hidden" name="sorting_order" value="sort_by_number_of_pations" />
+						<c:if test="${localization_value == 'ru'}">
+							<input type="submit" value='по количеству пациентов'  />
+						</c:if>
+						<c:if test="${localization_value == 'en'}">
+							<input type="submit" value='sort by number of pations' />
 						</c:if>
 					</form>
 				</div>
@@ -75,7 +95,6 @@
 									<td><%--<fmt:message key="resource_jsp.first_name" />--%></td>
 									<td><%--<fmt:message key="resource_jsp.access" />--%></td>
 									<td></td>
-									<td><%--countBlockCard--%></td>
 								</tr>
 							</thead>
 							<c:forEach var="bean" items="${usersList}">
@@ -104,9 +123,15 @@
 						                </c:if>
 						            </td>
 									<td>
-									    ${bean.countBlockCard}
+									    <c:if test="${localization_value == 'ru'}">
+						                    ${bean.professionNameRu}
+						                </c:if> 
+						                <c:if test="${localization_value == 'en'}">
+						                    ${bean.professionName}
+						                </c:if>
+									
+									    
 									</td>
-									<td>${bean.countBlockCard}</td>
 								</tr>
 							</c:forEach>
 						</table>

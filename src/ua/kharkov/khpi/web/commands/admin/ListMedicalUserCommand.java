@@ -2,6 +2,8 @@ package ua.kharkov.khpi.web.commands.admin;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -30,14 +32,12 @@ public class ListMedicalUserCommand extends Command{
 	 */
 	private static class CompareById implements Comparator<MedicalUser>, Serializable {
 		private static final long serialVersionUID = -1573481565177573283L;
-
 		public int compare(MedicalUser bean1, MedicalUser bean2) {
 			if (bean1.getId() > bean2.getId())
 				return 1;
 			else return -1;
 		}
 	}
-	
 	private static Comparator<MedicalUser> compareById = new CompareById();
 			
 	@Override
@@ -46,82 +46,53 @@ public class ListMedicalUserCommand extends Command{
 		
 		log.debug("Commands \"ListMedicalUserCommand\" starts");
 				
-		String id_user = request.getParameter("id_user");
-		String accesses_users = request.getParameter("accesses_users");
-		log.debug("------------------");
-		log.debug("id_user:" + id_user);
-		log.debug("accesses_users:" + accesses_users);
-		log.debug("------------------");
 		String localeToSet = request.getParameter("localeToSet");
 		log.debug("localeToSet:" + localeToSet);
 		
-//		if ((id_user != null && accesses_users != null))
-//		{
-//			
-///*		}
-//		else
-//		{
-//*/			if (accesses_users.equals("unlocked"))
-//			{
-//				accesses_users = "1";
-//			}
-//			else if (accesses_users.equals("blocked"))
-//			{
-//				accesses_users = "0";
-//			}
-//			new UserFullInfoDao().updateUserAccessesUsers(id_user, accesses_users);
-//		}
-//		
-		
-/*		
-		// List<UserA> usersAList = new UserDaoA().findUserAll();
-		List<UserFull> usersList = new UserFullInfoDao().getUsers();
-		// log.trace("Found in DB: usersAList --> " + usersAList);
-		log.trace("Found in DB: usersAList --> " + usersList);
-		
-		int size_UserFull = usersList.size();
-		log.debug("Set the request attribute: size_UserFull --> " + size_UserFull);
-		
-		List<Integer> countBlockCard = new ArrayList<Integer>();
-		for (int i = 0; i < size_UserFull;  i++)
-		{
-			countBlockCard.add(new UserFullInfoDao().getBlockCard(i + 1));
-		}
-		for (int i = 0; i < size_UserFull;  i++)
-		{
-			log.debug("countBlockCard ["+ i + "]: " + countBlockCard.get(i));
-			UserFull oneUserFull = usersList.get(i);
-			oneUserFull.setCountBlockCard(countBlockCard.get(i));
-			usersList.set(i, oneUserFull);
-		}
-		
-		// Collections.sort(userOrderBeanList, compareById);
-		
-		// put user order beans list to request
-		// request.setAttribute("usersAList", usersAList);		
-		request.setAttribute("usersList", usersList);
-		log.trace("Set the request attribute: usersList --> " + usersList);
-*/		
-//		List<UserFullWithBlockCard> usersWithBlockCardList = new UserFullInfoDao().getUsersWithBlockCard();
-//		request.setAttribute("usersList", usersWithBlockCardList);
-//		log.trace("Set the request attribute: usersList --> " + usersWithBlockCardList);
-		
+		// Fill in the list of a medical user bean <<MedicalUse>> at the request 
+		// related to the table <<MEDICAL_USER>> in the database. 
+		// Some fields of a bean <<MedicalUse>> are empty.
 		List<MedicalUser> usersList = new MedicalUserDao().getMedicalUsers();
+		// Refill in empty fields of a bean <<MedicalUse>> with the following cycle, 
+		// using methods of a bean <<MedicalUse>> and Dao <<ProfessionDao>>. 
 		for (MedicalUser user : usersList) {
-			user.setProfessionName(new ProfessionDao().getCategoryById(user.getProfessionId()).getProfessionName());
+			user.setProfessionName(new ProfessionDao().getProfessionById(user.getProfessionId()).getProfessionName());
+			user.setProfessionNameRu(new ProfessionDao().getProfessionById(user.getProfessionId()).getProfessionNameRu());
 		}
+		// Sort
+		if(request.getParameter("sorting_order") == null || request.getParameter("sorting_order").equals("sort_by_id")) {
+			Collections.sort(usersList, new Comparator<MedicalUser>() {
+				public int compare(MedicalUser o1, MedicalUser o2) {
+					return (int)(o1.getId() - o2.getId());
+				}
+			});
+		} else if(request.getParameter("sorting_order").equals("sort_by_login")) {
+			Collections.sort(usersList, (MedicalUser o1, MedicalUser o2) -> (o1.getLogin().compareTo(o2.getLogin())));
+		} else if(request.getParameter("sorting_order").equals("sort_by_lastname")) {
+			Collections.sort(usersList, (MedicalUser o1, MedicalUser o2) -> (o1.getLastName().compareTo(o2.getLastName())));
+		} else if(request.getParameter("sorting_order").equals("sort_by_lastname_ru")) {
+			Collections.sort(usersList, (MedicalUser o1, MedicalUser o2) -> (o1.getLastNameRu().compareTo(o2.getLastNameRu())));
+		} else if(request.getParameter("sorting_order").equals("sort_by_profession")) {
+			Collections.sort(usersList, (MedicalUser o1, MedicalUser o2) -> (o1.getProfessionName().compareTo(o2.getProfessionName())));
+		}else if(request.getParameter("sorting_order").equals("sort_by_profession_ru")) {
+			Collections.sort(usersList, (MedicalUser o1, MedicalUser o2) -> (o1.getProfessionNameRu().compareTo(o2.getProfessionNameRu())));
+		}/*else if(request.getParameter("sorting_order").equals("sort_by_number_of_pations")) {
+			Collections.sort(medicalList, (MedicalStaff o1, MedicalStaff o2) -> (int)(o1.getNumberOfPatients() - o2.getNumberOfPatients()));
+		}*/
+
+//		List<Category> categoryList = new ArrayList<Category>();
+//		for (MedicalStaff medicalStaff : medicalList) {
+//			categoryList.add(new CategoryDAO().getCategoryById(medicalStaff.getCategoryId()));
+//		}
+		
+		
+		
 		request.setAttribute("usersList", usersList);
 		log.trace("Set the request attribute: usersList --> " + usersList);
 		
 		log.debug("Commands \"ListMedicalUserCommand\" finished");
 		
-		// request.setAttribute("usersList", usersList);
-		
-		
 		return Path.PAGE__ADMIN_MEDICAL_USER;
-		
-		// return Path.PAGE__ADMIN_ONE; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		// return Path.PAGE__LIST_ORDERS;
 	}
 
 

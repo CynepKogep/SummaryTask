@@ -2,6 +2,8 @@ package ua.kharkov.khpi.database.beans;
 
 public class MedicalUser extends Entity {
 	
+	private static final long serialVersionUID = 8467257860808346237L;
+	
 	private String login;
 	private String password;
 	private String firstName;
@@ -11,8 +13,15 @@ public class MedicalUser extends Entity {
 	private int professionId;
 	private int roleId;
 	
-	private String professionName; 
+	private String professionName;
+	private String professionNameRu;
 	
+	public String getProfessionNameRu() {
+		return professionNameRu;
+	}
+	public void setProfessionNameRu(String professionNameRu) {
+		this.professionNameRu = professionNameRu;
+	}
 	public String getProfessionName() {
 		return professionName;
 	}
@@ -67,13 +76,14 @@ public class MedicalUser extends Entity {
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
-
 	@Override
 	public String toString() {
 		return "MedicalUser [login=" + login + ", password=" + password + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", firstNameRu=" + firstNameRu + ", lastNameRu=" + lastNameRu + ", professionId="
-				+ professionId + ", roleId=" + roleId + "]";
+				+ professionId + ", roleId=" + roleId + ", professionName=" + professionName + ", professionNameRu="
+				+ professionNameRu + "]";
 	}
 
+	
 
 }

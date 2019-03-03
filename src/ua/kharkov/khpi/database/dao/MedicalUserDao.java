@@ -32,7 +32,7 @@ public class MedicalUserDao {
 	    "WHERE login = ?";
 	private static final String SQL_FIND_MEDICAL_USER =     
 		"SELECT * FROM medical_user " + 
-	    "WHERE role_id = 1 OR role_id = 2";
+	    "WHERE role_id = 0 OR role_id = 1 OR role_id = 2";
 
 	// ------------------------------------------------------------------------------------------------
 	
@@ -90,8 +90,8 @@ public class MedicalUserDao {
 				med.setPassword(rs.getString(Fields.MEDICAL_USER_PASSWORD));
 				med.setFirstName(rs.getString(Fields.MEDICAL_USER_FIRST_NAME));
 				med.setLastName(rs.getString(Fields.MEDICAL_USER_LAST_NAME));
-				med.setFirstNameRu(rs.getString(Fields.MEDICAL_USER_FIRST_NAME));
-				med.setLastNameRu(rs.getString(Fields.MEDICAL_USER_LAST_NAME));
+				med.setFirstNameRu(rs.getString(Fields.MEDICAL_USER_FIRST_NAME_RU));
+				med.setLastNameRu(rs.getString(Fields.MEDICAL_USER_LAST_NAME_RU));
 				med.setProfessionId(rs.getInt(Fields.MEDICAL_USER_PROFESSION_ID));
 				med.setRoleId(rs.getInt(Fields.MEDICAL_USER_ROLE_ID));
 				return med;

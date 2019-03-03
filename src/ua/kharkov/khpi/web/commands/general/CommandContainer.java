@@ -29,7 +29,7 @@ public class CommandContainer {
 		commands.put("viewSettings", new ViewSettingsCommand());
 		commands.put("updateSettings", new UpdateSettingsCommand()); 
 		// admin commands
-		commands.put("listMedicalUserCommand", new ListMedicalUserCommand());
+		commands.put("listMedicalUser", new ListMedicalUserCommand());
 		
 //		commands.put("login", new LoginCommand());
 //		commands.put("loginA", new LoginCommandA());

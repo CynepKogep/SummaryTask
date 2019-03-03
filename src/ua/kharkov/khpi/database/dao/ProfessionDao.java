@@ -38,8 +38,8 @@ public class ProfessionDao {
 		return professionList;
 	}
 
-	public Profession getCategoryById(long id) {
-		Profession category = null;
+	public Profession getProfessionById(long id) {
+		Profession profession = null;
 		PreparedStatement pstmt = null;
         ResultSet rs = null;
         Connection con = null;
@@ -50,15 +50,15 @@ public class ProfessionDao {
 			rs = pstmt.executeQuery();
 			rs.next();
 			ProfessionMapper mapper = new ProfessionMapper();
-			category = mapper.mapRow(rs);
-			return category;
+			profession = mapper.mapRow(rs);
+			return profession;
         } catch (SQLException ex) {
             DBManager.getInstance().rollbackAndClose(con);
             ex.printStackTrace();
         } finally {
             DBManager.getInstance().commitAndClose(con);
         }
-		return category;
+		return profession;
 	}
 	
 	private static class ProfessionMapper implements EntityMapper<Profession> {
@@ -68,6 +68,7 @@ public class ProfessionDao {
 				Profession category = new Profession();
 				category.setId(rs.getLong(Fields.ENTITY__ID));
 				category.setProfessionName(rs.getString(Fields.PROFESSION_NAME));
+				category.setProfessionNameRu(rs.getString(Fields.PROFESSION_NAME_RU));
 				return category;
 			} catch (SQLException e) {
 				throw new IllegalStateException(e);

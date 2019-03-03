@@ -5,7 +5,7 @@ import ua.kharkov.khpi.database.enums.Status;
 
 public class PatientAssignment extends Entity {
 
-	private static final long serialVersionUID = 8466257197308346236L;
+	private static final long serialVersionUID = 8467257860808346237L;
 
 	private int patient_id;
 	private int assignment_id;

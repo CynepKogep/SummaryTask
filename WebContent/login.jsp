@@ -15,9 +15,8 @@ This is the HEADER, containing a top menu.
 header.jspf contains all necessary functionality for it.
 Just included it in this JSP document.
 ===========================================================================--%>
-			<%@ include file="/WEB-INF/jspf/headerforregistration.jspf"%>	
 			<%-- HEADER --%>
-			<%-- <%@ include file="/WEB-INF/jspf/header.jspf"%> --%>
+			    <%@ include file="/WEB-INF/jspf/header_login.jsp"%>	
 			<%-- HEADER --%>
 <%--=========================================================================== 
 This is the CONTENT, containing the main part of the page.
