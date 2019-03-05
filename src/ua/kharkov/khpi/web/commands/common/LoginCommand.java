@@ -66,8 +66,8 @@ public class LoginCommand extends Command {
 			if (userRole == Role.ADMIN)
 				forward = NameOfCommand.COMMAND__LIST_MEDICAL_USER;
 		
-//			if (userRole == Role.DOCTOR)
-//				forward = Path.COMMAND__LIST_MENU;
+			if (userRole == Role.DOCTOR)
+				forward = NameOfCommand.COMMAND__LIST_PATIENT_FOR_DOCTOR;
 			
 			session.setAttribute("user", user);
 			log.trace("Set the session attribute: user --> " + user);

@@ -41,10 +41,13 @@ public class RegistrationPatientCommand extends Command{
 		int doctor_id_registration_int = -1;
 		if (doctor_id_registration != null)
 		    doctor_id_registration_int = Integer.parseInt(doctor_id_registration);
-		String date_of_birth_registration = request.getParameter("doctor_id_registration");
+		String date_of_birth_registration = request.getParameter("date_of_birth_registration");
 		Date date_of_birth_registration_date = null ;
-		if (date_of_birth_registration != null)
+		if (date_of_birth_registration != null) {
+			log.debug("date_of_birth_registration:" + date_of_birth_registration);
+			log.debug("date_of_birth_registration_data:" + date_of_birth_registration_date);
 		    date_of_birth_registration_date = Date.valueOf(date_of_birth_registration);
+		}
 		String telephon_number_registration = request.getParameter("telephon_number_registration");
 		String email_registration = request.getParameter("email_registration");
 

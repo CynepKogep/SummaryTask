@@ -14,6 +14,7 @@ import ua.kharkov.khpi.web.commands.common.LogoutCommand;
 import ua.kharkov.khpi.web.commands.common.NoCommand;
 import ua.kharkov.khpi.web.commands.common.UpdateSettingsCommand;
 import ua.kharkov.khpi.web.commands.common.ViewSettingsCommand;
+import ua.kharkov.khpi.web.commands.doctor.ListPatientForDoctorCommand;
 
 /**
  * Holder for all commands.
@@ -36,6 +37,8 @@ public class CommandContainer {
 		commands.put("listPatient", new ListPatientCommand());
 		commands.put("RegistrationMedicalUser", new RegistrationMedicalUserCommand());
 		commands.put("RegistrationPatient", new RegistrationPatientCommand());
+		// doctor commands
+		commands.put("listPatientForDoctor", new ListPatientForDoctorCommand());
 		
 		
 //		commands.put("AddMedicalUser", new AddMedicalUserCommand());

@@ -43,6 +43,30 @@ public class MedicalUserDao {
 
 	// ------------------------------------------------------------------------------------------------
 	
+//	public MedicalUser findMedicalUserByLogin (String login)
+//	{
+//		MedicalUser user = null;
+//		PreparedStatement pstmt = null;
+//        ResultSet rs = null;
+//        Connection con = null;
+//        try {
+//			con = DBManager.getInstance().getConnection();
+//			pstmt = con.prepareStatement(SQL_FIND_MEDICAL_USER_BY_LOGIN);
+//			pstmt.setString(1, login);
+//			rs = pstmt.executeQuery();
+//			rs.next();
+//			MadicalUserMapper mapper = new MadicalUserMapper();
+//			user = mapper.mapRow(rs);
+//			return user;
+//        } catch (SQLException ex) {
+//            DBManager.getInstance().rollbackAndClose(con);
+//            ex.printStackTrace();
+//        } finally {
+//            DBManager.getInstance().commitAndClose(con);
+//        }
+//		return user;
+//	}
+	
 	public MedicalUser findMedicalUserByLogin (String login)
 	{
 		MedicalUser user = null;
@@ -51,13 +75,14 @@ public class MedicalUserDao {
         Connection con = null;
         try {
 			con = DBManager.getInstance().getConnection();
+			MadicalUserMapper mapper = new MadicalUserMapper();
 			pstmt = con.prepareStatement(SQL_FIND_MEDICAL_USER_BY_LOGIN);
 			pstmt.setString(1, login);
 			rs = pstmt.executeQuery();
-			rs.next();
-			MadicalUserMapper mapper = new MadicalUserMapper();
-			user = mapper.mapRow(rs);
-			return user;
+			if (rs.next())
+     			user = mapper.mapRow(rs);
+            rs.close();
+            pstmt.close();
         } catch (SQLException ex) {
             DBManager.getInstance().rollbackAndClose(con);
             ex.printStackTrace();
@@ -65,7 +90,7 @@ public class MedicalUserDao {
             DBManager.getInstance().commitAndClose(con);
         }
 		return user;
-	}
+	}	
 	
 	public List<MedicalUser> getMedicalUsers() {
 		List<MedicalUser> doctorsList = new ArrayList<>();

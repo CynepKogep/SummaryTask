@@ -87,7 +87,7 @@
 		</init-param>
 		<init-param>
 			<param-name>doctor</param-name>
-			<param-value>listMenu listClientCards listClientPays ClientCreatePay</param-value>
+			<param-value> listPatientForDoctor listMenu listClientCards listClientPays ClientCreatePay</param-value>
 		</init-param>
 				<init-param>
 			<param-name>nurse</param-name>

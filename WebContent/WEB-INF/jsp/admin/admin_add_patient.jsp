@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jspf/directive/page.jspf"%>
 <%@ include file="/WEB-INF/jspf/directive/taglib.jspf"%>
 
-<%-- PAGE ADMIN NUMBER 3 --%> 
+<%-- PAGE ADMIN NUMBER 4 --%> 
 
 <html>
     <c:set var="title" value="List orders" scope="page" />

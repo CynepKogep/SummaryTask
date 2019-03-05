@@ -16,9 +16,6 @@ import ua.kharkov.khpi.web.commands.general.Command;
 
 
 public class ListPatientCommand extends Command {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5361970576847952484L;
 
 	@Override
