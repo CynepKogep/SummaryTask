@@ -83,7 +83,7 @@
 		    <filter-class>ua.kharkov.khpi.web.filter.CommandAccessFilter</filter-class>
 		<init-param>
 			<param-name>admin</param-name>
-			<param-value>listMedicalUser listOrdersA cardsAdminCommand AdminCreateCard</param-value>
+			<param-value>listMedicalUser listPatient RegistrationMedicalUser RegistrationPatient </param-value>
 		</init-param>
 		<init-param>
 			<param-name>doctor</param-name>

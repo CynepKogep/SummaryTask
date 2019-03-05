@@ -16,6 +16,15 @@ public class MedicalUser extends Entity {
 	private String professionName;
 	private String professionNameRu;
 	
+	
+	private Integer numberOfPatients = null;
+	
+	public Integer getNumberOfPatients() {
+		return numberOfPatients;
+	}
+	public void setNumberOfPatients(Integer numberOfPatients) {
+		this.numberOfPatients = numberOfPatients;
+	}
 	public String getProfessionNameRu() {
 		return professionNameRu;
 	}

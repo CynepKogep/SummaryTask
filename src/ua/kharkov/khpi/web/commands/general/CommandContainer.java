@@ -6,6 +6,9 @@ import java.util.TreeMap;
 import org.apache.log4j.Logger;
 
 import ua.kharkov.khpi.web.commands.admin.ListMedicalUserCommand;
+import ua.kharkov.khpi.web.commands.admin.ListPatientCommand;
+import ua.kharkov.khpi.web.commands.admin.RegistrationMedicalUserCommand;
+import ua.kharkov.khpi.web.commands.admin.RegistrationPatientCommand;
 import ua.kharkov.khpi.web.commands.common.LoginCommand;
 import ua.kharkov.khpi.web.commands.common.LogoutCommand;
 import ua.kharkov.khpi.web.commands.common.NoCommand;
@@ -30,6 +33,12 @@ public class CommandContainer {
 		commands.put("updateSettings", new UpdateSettingsCommand()); 
 		// admin commands
 		commands.put("listMedicalUser", new ListMedicalUserCommand());
+		commands.put("listPatient", new ListPatientCommand());
+		commands.put("RegistrationMedicalUser", new RegistrationMedicalUserCommand());
+		commands.put("RegistrationPatient", new RegistrationPatientCommand());
+		
+		
+//		commands.put("AddMedicalUser", new AddMedicalUserCommand());
 		
 //		commands.put("login", new LoginCommand());
 //		commands.put("loginA", new LoginCommandA());

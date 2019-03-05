@@ -24,14 +24,17 @@ This way we define the ADMIN MENU.
 						<a href="controller?command=listMedicalUser"> 
 							<fmt:message key="resource_jsp.users" />
 						</a> &nbsp;
-<%--
-    					<a href="controller?command=cardsAdminCommand"> 
-							<fmt:message key="resource_jsp.cards" />
+
+    					<a href="controller?command=listPatient"> 
+							<fmt:message key="resource_jsp.patient" />
 						</a> &nbsp;
-						<a href="controller?command=AdminCreateCard"> 
-							<fmt:message key="resource_jsp.create_card" />
+
+						<a href="controller?command=RegistrationMedicalUser"> 
+							<fmt:message key="resource_jsp.add_medical_user" />
 						</a> &nbsp;
---%>						
+						<a href="controller?command=RegistrationPatient"> 
+							<fmt:message key="resource_jsp.add_patient" />
+						</a> &nbsp;
 					</c:when>
 
 <%--=========================================================================== 

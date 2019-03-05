@@ -58,6 +58,8 @@ public class ListMedicalUserCommand extends Command{
 		for (MedicalUser user : usersList) {
 			user.setProfessionName(new ProfessionDao().getProfessionById(user.getProfessionId()).getProfessionName());
 			user.setProfessionNameRu(new ProfessionDao().getProfessionById(user.getProfessionId()).getProfessionNameRu());
+			
+			user.setNumberOfPatients(new MedicalUserDao().getCountOfPatientsForDoctorId(user.getId()));
 		}
 		// Sort
 		if(request.getParameter("sorting_order") == null || request.getParameter("sorting_order").equals("sort_by_id")) {
@@ -76,9 +78,9 @@ public class ListMedicalUserCommand extends Command{
 			Collections.sort(usersList, (MedicalUser o1, MedicalUser o2) -> (o1.getProfessionName().compareTo(o2.getProfessionName())));
 		}else if(request.getParameter("sorting_order").equals("sort_by_profession_ru")) {
 			Collections.sort(usersList, (MedicalUser o1, MedicalUser o2) -> (o1.getProfessionNameRu().compareTo(o2.getProfessionNameRu())));
-		}/*else if(request.getParameter("sorting_order").equals("sort_by_number_of_pations")) {
-			Collections.sort(medicalList, (MedicalStaff o1, MedicalStaff o2) -> (int)(o1.getNumberOfPatients() - o2.getNumberOfPatients()));
-		}*/
+		}else if(request.getParameter("sorting_order").equals("sort_by_number_of_pations")) {
+			Collections.sort(usersList, (MedicalUser o1, MedicalUser o2) -> (int)(o1.getNumberOfPatients() - o2.getNumberOfPatients()));
+		}
 
 //		List<Category> categoryList = new ArrayList<Category>();
 //		for (MedicalStaff medicalStaff : medicalList) {

@@ -4,6 +4,7 @@ public final class NameOfCommand {
 
 	// commands
 	public static final String COMMAND__LIST_MEDICAL_USER = "/controller?command=listMedicalUser";
+	public static final String COMMAND__LIST_PATIENT = "/controller?command=listPatient";
 	
 	public static final String COMMAND__LIST_ORDERS = "/controller?command=listOrders";
 	public static final String COMMAND__LIST_MENU = "/controller?command=listMenu";
