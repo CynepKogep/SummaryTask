@@ -83,20 +83,26 @@
 									    ${bean.getId()}
 									</td>
 									<td>
-									    <c:if test="${localization_value == 'ru'}">
+<%--									    
+                                        <c:if test="${localization_value == 'ru'}">
 						                    ${bean.getAssignmentNameRu()}
 						                </c:if> 
 						                <c:if test="${localization_value == 'en'}">
 						                    ${bean.getAssignmentName()}
 						                </c:if>
+--%>						            
+                                        ${bean.getAssignmentName()}
 						            </td>
 									<td>
+<%--									
 									    <c:if test="${localization_value == 'ru'}">
 						                    ${bean.getAssignmentStatusNameRu()}
 						                </c:if> 
 						                <c:if test="${localization_value == 'en'}">
 						                    ${bean.getAssignmentStatusName()}
 						                </c:if>
+--%>
+                                        ${bean.getAssignmentStatusName()}						                
 						            </td>
 									<td>
 					                    <form action="controller" method="post">
@@ -128,20 +134,26 @@
 									    ${bean2.getId()}
 									</td>
 									<td>
+<%--									
 									    <c:if test="${localization_value == 'ru'}">
 						                    ${bean2.getAssignmentNameRu()}
 						                </c:if> 
 						                <c:if test="${localization_value == 'en'}">
 						                    ${bean2.getAssignmentName()}
 						                </c:if>
+ --%>
+                                        ${bean2.getAssignmentName()}						                
 						            </td>
 									<td>
+<%--									
 									    <c:if test="${localization_value == 'ru'}">
 						                    ${bean2.getAssignmentStatusNameRu()}
 						                </c:if> 
 						                <c:if test="${localization_value == 'en'}">
 						                    ${bean2.getAssignmentStatusName()}
 						                </c:if>
+--%>
+                                        ${bean2.getAssignmentStatusName()}
 						            </td>
 								</tr>
 								</c:if>
