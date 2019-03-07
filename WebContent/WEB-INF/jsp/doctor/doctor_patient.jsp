@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jspf/directive/page.jspf"%>
 <%@ include file="/WEB-INF/jspf/directive/taglib.jspf"%>
 
-<%-- PAGE ADMIN <<PATIENT>> NUMBER 2 --%> 
+<%-- PAGE DOCTOR <<PATIENT>> NUMBER 1 --%> 
 
 <html>
     <c:set var="title" value="List orders" scope="page" />
@@ -12,7 +12,6 @@
     	<fmt:message key="settings_jsp.label.localization.value" var="localization_value" />
 	    <table id="main-container">
 		    <%@ include file="/WEB-INF/jspf/header.jspf"%>
-            
 		    <tr>
 			    <td class="content">
 				<%-- CONTENT --%> 
@@ -26,7 +25,7 @@
 			            </c:if>    
 					</div>
 					<form style="display: inline-block" id="make_order" action="controller">
-						<input type="hidden" name="command" value="listPatient" /> 
+						<input type="hidden" name="command" value="listPatientForDoctor" /> 
 						<input type="hidden" name="sorting_order" value="sort_by_id" />
 						<c:if test="${localization_value == 'ru'}">
 							<input type="submit" value='по id' />
@@ -36,7 +35,7 @@
 						</c:if>
 					</form>
 					<form style="display: inline-block" id="make_order" action="controller">
-						<input type="hidden" name="command" value="listPatient" /> 
+						<input type="hidden" name="command" value="listPatientForDoctor" /> 
 						<c:if test="${localization_value == 'ru'}">
 						    <input type="hidden" name="sorting_order" value="sort_by_lastname_ru" />
 							<input type="submit" value='по фамилии'  />
@@ -47,7 +46,7 @@
 						</c:if>
 					</form>
 					<form style="display: inline-block" id="make_order" action="controller">
-						<input type="hidden" name="command" value="listPatient" /> 
+						<input type="hidden" name="command" value="listPatientForDoctor" /> 
 						<input type="hidden" name="sorting_order" value="sort_by_email" />
 						<c:if test="${localization_value == 'ru'}">
 							<input type="submit" value='по почтовому ящику'  />
@@ -57,7 +56,7 @@
 						</c:if>
 					</form>
 					<form style="display: inline-block" id="make_order" action="controller">
-						<input type="hidden" name="command" value="listPatient" /> 
+						<input type="hidden" name="command" value="listPatientForDoctor" /> 
 						<input type="hidden" name="sorting_order" value="sort_by_date_of_birth" />
 						<c:if test="${localization_value == 'ru'}">
 							<input type="submit" value='по дню рождению' />
@@ -66,8 +65,6 @@
 							<input type="submit" value='sort by date of birth' />
 						</c:if>
 					</form>
-					
-					
 				</div>
 				
 				<c:choose>
@@ -87,9 +84,11 @@
 									<td><%--<fmt:message key="resource_jsp.access" />--%></td>
 									<td></td>
 									<td></td>
+									<td></td>
 								</tr>
 							</thead>
 							<c:forEach var="bean" items="${patient_list}">
+							    <c:if test="${!item.discharged}">
 								<tr>
 									<%-- id --%> 
 									<td>
@@ -120,9 +119,15 @@
 									<td>
 						                ${bean.dateOfBirth}
 									</td>
-									
-									
+									<td>
+				                        <form action="controller" method="post">
+					                        <input type="hidden" name="command" value="patientCardDoctor" />
+					                        <input type="hidden" name="patient_id" value="${bean.getId()}"/>   
+					                        <input type="submit" class="btn btn-success" value = <fmt:message key="resource_jsp.OpenCard"/>/>
+				                        </form>
+				                    </td>
 								</tr>
+								</c:if>
 							</c:forEach>
 						</table>
 					</c:otherwise>

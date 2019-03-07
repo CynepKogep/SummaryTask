@@ -3,7 +3,7 @@
 
 <html>
 
-<!-- создана переменная title, которая будет иметь в значение "Settings"  -->
+<!--  "Settings"  -->
 <c:set var="title" value="Settings" scope="page" />
 <%@ include file="/WEB-INF/jspf/head.jspf"%>
 

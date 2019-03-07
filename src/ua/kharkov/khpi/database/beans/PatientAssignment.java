@@ -3,6 +3,8 @@ package ua.kharkov.khpi.database.beans;
 import ua.kharkov.khpi.database.enums.Assignment;
 import ua.kharkov.khpi.database.enums.Status;
 
+
+// назначение
 public class PatientAssignment extends Entity {
 
 	private static final long serialVersionUID = 8467257860808346237L;

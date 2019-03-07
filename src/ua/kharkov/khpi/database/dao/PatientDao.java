@@ -19,8 +19,9 @@ public class PatientDao {
 	    "INSERT INTO patient (first_name, last_name, first_name_ru, last_name_ru, doctor_id, date_of_birth, telephon_number, email) " 
 	+                "VALUES (?,          ?,         ?,             ?,            ?,         ?,             ?,               ?)";
 	private static final String SQL_FIND_DOCTORS_PATIENTS = "SELECT * FROM patient WHERE doctor_id=?";
-	private static final String SQL_SET_DIAGNOS_BY_PATIENT_ID = "UPDATE patient SET diagnose_id=? WHERE id=?";
-	private static final String SQL_DISCHARGED_PATIENT_BY_ID = "UPDATE patient SET isDischarger=1 WHERE id=?";
+	private static final String SQL_SET_DIAGNOSIS_BY_PATIENT_ID = 
+		"UPDATE patient SET diagnosis_id = ? WHERE id = ?";
+	private static final String SQL_DISCHARGED_PATIENT_BY_ID = "UPDATE patient SET discharged=1 WHERE id=?";
 	
 	
 	public void DischargedPatient(long id) {
@@ -40,14 +41,14 @@ public class PatientDao {
 		}
 	}
 	
-	public void Set_diagnos(int diagnos_id, long id) {
+	public void setDiagnosis(int diagnosis_id, long id) {
 		PreparedStatement pstmt = null;
 		Connection con = null;
 		try {
 			con = DBManager.getInstance().getConnection();
 			int k = 1;
-			pstmt = con.prepareStatement(SQL_SET_DIAGNOS_BY_PATIENT_ID);
-			pstmt.setInt(k++, diagnos_id);
+			pstmt = con.prepareStatement(SQL_SET_DIAGNOSIS_BY_PATIENT_ID);
+			pstmt.setInt(k++, diagnosis_id);
 			pstmt.setLong(k++, id);
 			pstmt.executeUpdate();
 			pstmt.close();

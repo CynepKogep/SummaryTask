@@ -38,14 +38,14 @@ This way we define the ADMIN MENU.
 					</c:when>
 
 <%--=========================================================================== 
-This way we define the USER MENU.
+This way we define the DOCTOR MENU.
 ===========================================================================--%>
 
-					<c:when test="${userRole.name == 'client'}">
-						<a href="controller?command=listClientCards"> 
+					<c:when test="${userRole.name == 'doctor'}">
+						<a href="controller?command=listPatientForDoctor"> 
 							<fmt:message key="resource_jsp.cards" />
 						</a> &nbsp;
-
+<%--
 	 					<a href="controller?command=listClientPays"> 
  							<fmt:message key="resource_jsp.pays" />
 						</a> &nbsp;
@@ -53,6 +53,8 @@ This way we define the USER MENU.
 						<a href="controller?command=ClientCreatePay"> 
 							<fmt:message key="resource_jsp.create_pay" /> 
 						</a> &nbsp;
+						
+--%>						
 					</c:when>
 				</c:choose>
 

@@ -87,15 +87,15 @@
 		</init-param>
 		<init-param>
 			<param-name>doctor</param-name>
-			<param-value> listPatientForDoctor listMenu listClientCards listClientPays ClientCreatePay</param-value>
+			<param-value> listPatientForDoctor patientCardDoctor setDiagnosisDoctor makeAssignmentDoctor completeAssignmentDoctor dischargedPatientDoctor</param-value>
 		</init-param>
 				<init-param>
 			<param-name>nurse</param-name>
-			<param-value>listMenu listClientCards listClientPays ClientCreatePay</param-value>
+			<param-value>listMenu </param-value>
 		</init-param>
 		<init-param>
 			<param-name>common</param-name>
-			<param-value>logout noCommand viewSettings updateSettings registration </param-value>
+			<param-value>logout noCommand viewSettings updateSettings </param-value>
 		</init-param>
 		<init-param>
 			<param-name>out-of-control</param-name>

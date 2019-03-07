@@ -30,7 +30,7 @@ public class LoginCommand extends Command {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
 		
-		log.debug("Command starts");
+		log.debug("Command \"LoginCommand\" starts");
 		
 		HttpSession session = request.getSession();
 		
@@ -61,22 +61,32 @@ public class LoginCommand extends Command {
 			return forward;
 		} else {
 			Role userRole = Role.getRole(user);
-			log.trace("userRole --> " + userRole);
-				
-			if (userRole == Role.ADMIN)
+			log.debug("userRole --> " + userRole);
+			log.debug("Role.ADMIN --> " + Role.ADMIN); 
+			log.debug("Role.DOCTOR --> " + Role.DOCTOR); 
+			
+			if (userRole == Role.ADMIN) {
+				log.debug("userRole == Role.ADMIN");
 				forward = NameOfCommand.COMMAND__LIST_MEDICAL_USER;
+			}
 		
-			if (userRole == Role.DOCTOR)
+			if (userRole == Role.DOCTOR) {
+				log.debug("userRole == Role.DOCTOR");
 				forward = NameOfCommand.COMMAND__LIST_PATIENT_FOR_DOCTOR;
+			}
+				
 			
 			session.setAttribute("user", user);
 			log.trace("Set the session attribute: user --> " + user);
 				
 			session.setAttribute("userRole", userRole);				
 			log.trace("Set the session attribute: userRole --> " + userRole);
-				
-			log.info("User " + user + " logged as " + userRole.toString().toLowerCase());
 			
+			session.setAttribute("login", login);
+			log.trace("Set the session attribute: login --> " + login);
+			
+			log.info("User " + user + " logged as " + userRole.toString().toLowerCase());
+
 			// work with i18n
 			// String userLocaleName = user.getLocaleName();
 			String userLocaleName = null;
@@ -92,7 +102,7 @@ public class LoginCommand extends Command {
 			}
 		}
 		
-		log.debug("Command finished");
+		log.debug("Command \"LoginCommand\" finished");
 		return forward;
 	}
 

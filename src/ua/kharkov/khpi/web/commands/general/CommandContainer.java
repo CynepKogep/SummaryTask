@@ -14,7 +14,12 @@ import ua.kharkov.khpi.web.commands.common.LogoutCommand;
 import ua.kharkov.khpi.web.commands.common.NoCommand;
 import ua.kharkov.khpi.web.commands.common.UpdateSettingsCommand;
 import ua.kharkov.khpi.web.commands.common.ViewSettingsCommand;
+import ua.kharkov.khpi.web.commands.doctor.CompleteAssignmentDoctorCommand;
+import ua.kharkov.khpi.web.commands.doctor.DischargePatientDoctorCommand;
 import ua.kharkov.khpi.web.commands.doctor.ListPatientForDoctorCommand;
+import ua.kharkov.khpi.web.commands.doctor.MakeAnAssignmentDoctorCommand;
+import ua.kharkov.khpi.web.commands.doctor.PatientCardDoctorCommand;
+import ua.kharkov.khpi.web.commands.doctor.SetDiagnosisDoctorCommand;
 
 /**
  * Holder for all commands.
@@ -39,7 +44,11 @@ public class CommandContainer {
 		commands.put("RegistrationPatient", new RegistrationPatientCommand());
 		// doctor commands
 		commands.put("listPatientForDoctor", new ListPatientForDoctorCommand());
-		
+		commands.put("patientCardDoctor", new PatientCardDoctorCommand());
+		commands.put("setDiagnosisDoctor", new SetDiagnosisDoctorCommand());
+		commands.put("makeAssignmentDoctor", new MakeAnAssignmentDoctorCommand()); // назначение
+		commands.put("completeAssignmentDoctor", new CompleteAssignmentDoctorCommand());
+		commands.put("dischargedPatientDoctor", new DischargePatientDoctorCommand());
 		
 //		commands.put("AddMedicalUser", new AddMedicalUserCommand());
 		

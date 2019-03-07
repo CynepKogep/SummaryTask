@@ -70,6 +70,7 @@ public class UpdateSettingsCommand extends Command {
 //			updateUser = true;
 		}
 		
+		
 /*		if (updateUser == true)
 			new UserDao().updateUser(user);
 */
