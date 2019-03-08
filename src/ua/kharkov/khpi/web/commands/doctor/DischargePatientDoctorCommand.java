@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import ua.kharkov.khpi.constants.Path;
 import ua.kharkov.khpi.database.beans.Patient;
 import ua.kharkov.khpi.database.beans.PatientAssignment;
@@ -20,11 +22,15 @@ import ua.kharkov.khpi.web.commands.general.Command;
 
 
 public class DischargePatientDoctorCommand extends Command{
+	
 	private static final long serialVersionUID = 7052213159842679224L;
+	private static final Logger log = Logger.getLogger(DischargePatientDoctorCommand.class);
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		
+		log.debug("Commands \"DischargePatientDoctorCommand\" starts");
 		
 		String errorMessage = null;
 		String forward = Path.PAGE__ERROR_PAGE;
@@ -44,8 +50,6 @@ public class DischargePatientDoctorCommand extends Command{
 //
 //			return forward;
 //		}
-		
-		
 		
 		long id = Long.parseLong(request.getParameter("patient_id"));
 		new PatientDao().DischargedPatient(id);
@@ -72,8 +76,25 @@ public class DischargePatientDoctorCommand extends Command{
 		
 		// SendMailSSL.SendMailToUser(patient.getEmail(), sb.toString());
 		// return new ListPatientForDoctorCommand().execute(request, response);
-		String information = new String(sb);		
+		
+		// String information = new String(sb);		
+		
+		StringBuilder sb_for_html = new StringBuilder();
+		sb_for_html.append("<p> Patient with id:" + patient.getId() + "</p>\n" + "<p>"
+				+ patient.getFirstName() + " " + patient.getLastName()+"</p>\n");
+		sb_for_html.append("<p> Patient assignment information:"+ "</p>\n");
+		for (PatientAssignment patientAssignment : patient_assignment) {
+			sb_for_html.append("<p> ID: " + patientAssignment.getId() +
+			", Assignment name: " + patientAssignment.getAssignmentName() +
+			", Assinment status: " + patientAssignment.getAssignmentStatusName()+ "</p>\n");
+		}
+		sb_for_html.append("<p>This patient was discharged! </p>");
+		
+		String information = new String(sb_for_html);
+		
 		request.setAttribute("information", information);
+		
+		log.debug("Commands \"DischargePatientDoctorCommand\" finished");
 		
 		return Path.PAGE__DOCTOR_INFORMATION_DISCHARGED_PATIENT;
 		

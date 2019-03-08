@@ -87,11 +87,11 @@
 		</init-param>
 		<init-param>
 			<param-name>doctor</param-name>
-			<param-value> listPatientForDoctor patientCardDoctor setDiagnosisDoctor makeAssignmentDoctor completeAssignmentDoctor dischargedPatientDoctor</param-value>
+			<param-value>listPatientForDoctor patientCardDoctor setDiagnosisDoctor makeAssignmentDoctor completeAssignmentDoctor dischargedPatientDoctor</param-value>
 		</init-param>
 				<init-param>
 			<param-name>nurse</param-name>
-			<param-value>listMenu </param-value>
+			<param-value>listPatientForNurse patientCardNurse makeAssignmentNurse completeAssignmentNurse </param-value>
 		</init-param>
 		<init-param>
 			<param-name>common</param-name>

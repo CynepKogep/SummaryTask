@@ -43,7 +43,7 @@ This way we define the DOCTOR MENU.
 
 					<c:when test="${userRole.name == 'doctor'}">
 						<a href="controller?command=listPatientForDoctor"> 
-							<fmt:message key="resource_jsp.cards" />
+							<fmt:message key="resource_jsp.doctor.Patients" />
 						</a> &nbsp;
 <%--
 	 					<a href="controller?command=listClientPays"> 
@@ -56,6 +56,23 @@ This way we define the DOCTOR MENU.
 						
 --%>						
 					</c:when>
+					<c:when test="${userRole.name == 'nurse'}">
+						<a href="controller?command=listPatientForNurse"> 
+							<fmt:message key="resource_jsp.nurse.Patients" />
+						</a> &nbsp;
+<%--
+	 					<a href="controller?command=listClientPays"> 
+ 							<fmt:message key="resource_jsp.pays" />
+						</a> &nbsp;
+		
+						<a href="controller?command=ClientCreatePay"> 
+							<fmt:message key="resource_jsp.create_pay" /> 
+						</a> &nbsp;
+--%>						
+				    </c:when>	
+					
+					
+					
 				</c:choose>
 
 <%--=========================================================================== 

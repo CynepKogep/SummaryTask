@@ -64,6 +64,7 @@ public class LoginCommand extends Command {
 			log.debug("userRole --> " + userRole);
 			log.debug("Role.ADMIN --> " + Role.ADMIN); 
 			log.debug("Role.DOCTOR --> " + Role.DOCTOR); 
+			log.debug("Role.NURSE --> " + Role.NURSE); 
 			
 			if (userRole == Role.ADMIN) {
 				log.debug("userRole == Role.ADMIN");
@@ -74,8 +75,12 @@ public class LoginCommand extends Command {
 				log.debug("userRole == Role.DOCTOR");
 				forward = NameOfCommand.COMMAND__LIST_PATIENT_FOR_DOCTOR;
 			}
-				
-			
+
+			if (userRole == Role.NURSE) {
+				log.debug("userRole == Role.NURSE");
+				forward = NameOfCommand.COMMAND__LIST_PATIENT_FOR_NURSE;
+			}
+
 			session.setAttribute("user", user);
 			log.trace("Set the session attribute: user --> " + user);
 				
@@ -97,7 +102,6 @@ public class LoginCommand extends Command {
 				
 				session.setAttribute("defaultLocale", userLocaleName);
 				log.trace("Set the session attribute: defaultLocaleName --> " + userLocaleName);
-				
 				log.info("Locale for user: defaultLocale --> " + userLocaleName);
 			}
 		}

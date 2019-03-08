@@ -15,4 +15,7 @@ public class Path {
 	public static final String PAGE__DOCTOR_PATIENT                        = "/WEB-INF/jsp/doctor/doctor_patient.jsp";
 	public static final String PAGE__DOCTOR_PATIENT_CARD                   = "/WEB-INF/jsp/doctor/doctor_patient_card.jsp";
 	public static final String PAGE__DOCTOR_INFORMATION_DISCHARGED_PATIENT = "/WEB-INF/jsp/doctor/doctor_information_discharged_patient.jsp";
+	
+	public static final String PAGE__NURSE_PATIENT                         = "/WEB-INF/jsp/nurse/nurse_patient.jsp";
+	public static final String PAGE__NURSE_PATIENT_CARD                    = "/WEB-INF/jsp/nurse/nurse_patient_card.jsp";
 }

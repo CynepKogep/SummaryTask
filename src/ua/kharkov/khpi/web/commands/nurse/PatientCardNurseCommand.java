@@ -1,4 +1,4 @@
-package ua.kharkov.khpi.web.commands.doctor;
+package ua.kharkov.khpi.web.commands.nurse;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,20 +18,18 @@ import ua.kharkov.khpi.database.dao.AssignmentDao;
 import ua.kharkov.khpi.database.dao.DiagnosisDao;
 import ua.kharkov.khpi.database.dao.PatientDao;
 import ua.kharkov.khpi.database.enums.Assignment;
-import ua.kharkov.khpi.database.enums.Role;
 import ua.kharkov.khpi.web.commands.general.Command;
 
-
-public class PatientCardDoctorCommand extends Command{
+public class PatientCardNurseCommand extends Command{
 	
 	private static final long serialVersionUID = 3340981522803068509L;
-	private static final Logger log = Logger.getLogger(PatientCardDoctorCommand.class);
+	private static final Logger log = Logger.getLogger(PatientCardNurseCommand.class);
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		log.debug("Commands \"PatientCardDoctorCommand\" starts");
+		log.debug("Commands \"PatientCardNurseCommand\" starts");
 		
 		String errorMessage = null;
 		String forward = Path.PAGE__ERROR_PAGE;
@@ -40,6 +38,7 @@ public class PatientCardDoctorCommand extends Command{
 		if (request.getSession(false) == null) {
 			errorMessage = "You are not register";
 			request.setAttribute("errorMessage", errorMessage);
+
 			return forward;
 		}
 //		//check the role
@@ -52,16 +51,19 @@ public class PatientCardDoctorCommand extends Command{
 		String patient_id = request.getParameter("patient_id");
 		log.debug("patient_id:" + patient_id);
 		Patient patient = new PatientDao().getPatientById(Long.parseLong(request.getParameter("patient_id")));
-		log.debug("patient.getId():" + patient.getId());
 		List<PatientAssignment> patientAssignmentList = new AssignmentDao().getPatientAssignments(patient.getId());
 		for (PatientAssignment patientAssignment: patientAssignmentList) {
 			log.debug("patientAssignment:" + patientAssignment.toString());
 		}
 			
 		List<Assignment> assignmentList = new ArrayList<>();
-		for (Assignment assignment : Assignment.values()) {
-			assignmentList.add(assignment);
-		}
+		assignmentList.add(Assignment.values()[0]);
+		assignmentList.add(Assignment.values()[1]);
+		
+//		for (Assignment assignment : Assignment.values()) {
+//			assignmentList.add(assignment);
+//		}
+
 		List<Diagnosis> diagnosisList =new  DiagnosisDao().GetDiagnoses();
 		
 		request.setAttribute("diagnosisList", diagnosisList);
@@ -69,9 +71,9 @@ public class PatientCardDoctorCommand extends Command{
 		request.setAttribute("patientAssignmentList", patientAssignmentList);
 		request.setAttribute("patient", patient);
 		
-		log.debug("Commands \"PatientCardDoctorCommand\" starts");
+		log.debug("Commands \"PatientCardNurseCommand\" finished");
 		
-		return Path.PAGE__DOCTOR_PATIENT_CARD;
+		return Path.PAGE__NURSE_PATIENT_CARD;
 	}
 	
 }

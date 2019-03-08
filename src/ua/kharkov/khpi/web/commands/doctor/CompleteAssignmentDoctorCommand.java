@@ -54,6 +54,7 @@ public class CompleteAssignmentDoctorCommand extends Command{
 //		}
 		
 		log.debug("Commands \"CompleteAssignmentDoctorCommand\" finished");
+		
 		return new PatientCardDoctorCommand().execute(request, response);
 	}
 

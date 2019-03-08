@@ -16,7 +16,7 @@
 			    <td class="content">
 				
 				<c:choose>
-					<c:when test="${fn:length(patientAssignmentList) == 0}">
+					<c:when test="${fn:length(patientAssignmentList) < 0}">
 					    No such a patient assignmen
 					</c:when>
 
@@ -61,10 +61,6 @@
 				</select>
 	            <input type="submit" class="btn btn-success"/>
             </form>					
-					
-					
-					
-					
 					    CurrentAssignment:
 					    <div class="scrollingTable">
 						<table id="list1">
@@ -159,7 +155,7 @@
 								</c:if>
 							</c:forEach>
 						</table>
-					    DiaschargePatient 
+					    DiaschargePatient: 
 							<c:if test="${localization_value == 'ru'}">
 						        ${patient.firstNameRu}, ${patient.lastNameRu}
 						    </c:if> 

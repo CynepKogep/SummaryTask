@@ -20,6 +20,10 @@ import ua.kharkov.khpi.web.commands.doctor.ListPatientForDoctorCommand;
 import ua.kharkov.khpi.web.commands.doctor.MakeAnAssignmentDoctorCommand;
 import ua.kharkov.khpi.web.commands.doctor.PatientCardDoctorCommand;
 import ua.kharkov.khpi.web.commands.doctor.SetDiagnosisDoctorCommand;
+import ua.kharkov.khpi.web.commands.nurse.CompleteAssignmentNurseCommand;
+import ua.kharkov.khpi.web.commands.nurse.ListPatientForNurseCommand;
+import ua.kharkov.khpi.web.commands.nurse.MakeAnAssignmentNurseCommand;
+import ua.kharkov.khpi.web.commands.nurse.PatientCardNurseCommand;
 
 /**
  * Holder for all commands.
@@ -49,26 +53,11 @@ public class CommandContainer {
 		commands.put("makeAssignmentDoctor", new MakeAnAssignmentDoctorCommand()); // назначение
 		commands.put("completeAssignmentDoctor", new CompleteAssignmentDoctorCommand());
 		commands.put("dischargedPatientDoctor", new DischargePatientDoctorCommand());
-		
-//		commands.put("AddMedicalUser", new AddMedicalUserCommand());
-		
-//		commands.put("login", new LoginCommand());
-//		commands.put("loginA", new LoginCommandA());
-//		commands.put("logout", new LogoutCommand());
-//		commands.put("noCommand", new NoCommand());
-//		commands.put("viewSettings", new ViewSettingsCommand());
-//		commands.put("updateSettings", new UpdateSettingsCommand());
-//		commands.put("registration", new RegistrationCommand());
-		// client commands
-//		commands.put("listMenu", new ListMenuCommand());
-//		commands.put("listClientCards", new CardsClientCommand());
-//		commands.put("listClientPays", new PaysClientCommand());
-//		commands.put("ClientCreatePay", new ClientCreatePayCommand());
-		// admin commands
-//		commands.put("listOrders", new ListOrdersCommand());
-//		commands.put("listOrdersA", new ListOrdersCommandA());
-//		commands.put("cardsAdminCommand", new CardsAdminCommand());
-//		commands.put("AdminCreateCard", new AdminCreateCardCommand());
+		// nurse commands
+		commands.put("listPatientForNurse", new ListPatientForNurseCommand());
+		commands.put("patientCardNurse", new PatientCardNurseCommand());
+		commands.put("makeAssignmentNurse", new MakeAnAssignmentNurseCommand());
+		commands.put("completeAssignmentNurse", new CompleteAssignmentNurseCommand());
 		
 		log.debug("Command container was successfully initialized");
 		log.debug("Number of commands --> " + commands.size());

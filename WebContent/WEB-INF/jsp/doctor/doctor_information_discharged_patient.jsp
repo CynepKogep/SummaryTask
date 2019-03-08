@@ -20,8 +20,9 @@
                         ${information}
                     </div>
                     <div id="editor"></div>
-                    <button id="cmd">Сохранить PDF</button>
-                    
+                    <p>
+                        <button id="cmd">Сохранить PDF</button>
+                    </p>
                     <%--
                     <a href="#" onclick="getPDF()">Скачать PDF</a>
                     --%> 

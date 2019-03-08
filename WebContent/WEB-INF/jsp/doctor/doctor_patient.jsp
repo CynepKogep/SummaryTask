@@ -18,10 +18,10 @@
 				<div>
 					<div style="display: inline-block">
 						<c:if test="${localization_value=='ru'}">
-			                Сортировка
+			                Сортировка:
 			            </c:if>
 			            <c:if test="${localization_value=='en'}">
-			                Sorting
+			                Sorting:
 			            </c:if>    
 					</div>
 					<form style="display: inline-block" id="make_order" action="controller">
@@ -88,7 +88,7 @@
 								</tr>
 							</thead>
 							<c:forEach var="bean" items="${patient_list}">
-							    <c:if test="${!item.discharged}">
+							    <c:if test="${!bean.discharged}">
 								<tr>
 									<%-- id --%> 
 									<td>

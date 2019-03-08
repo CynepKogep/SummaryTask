@@ -82,16 +82,9 @@ public class ListMedicalUserCommand extends Command{
 			Collections.sort(usersList, (MedicalUser o1, MedicalUser o2) -> (int)(o1.getNumberOfPatients() - o2.getNumberOfPatients()));
 		}
 
-//		List<Category> categoryList = new ArrayList<Category>();
-//		for (MedicalStaff medicalStaff : medicalList) {
-//			categoryList.add(new CategoryDAO().getCategoryById(medicalStaff.getCategoryId()));
-//		}
-		
-		
-		
 		request.setAttribute("usersList", usersList);
 		log.trace("Set the request attribute: usersList --> " + usersList);
-		
+
 		log.debug("Commands \"ListMedicalUserCommand\" finished");
 		
 		return Path.PAGE__ADMIN_MEDICAL_USER;
