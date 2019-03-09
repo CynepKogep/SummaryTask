@@ -24,13 +24,16 @@ public class DiagnosisDao {
         Connection con = null;
         try {
 			con = DBManager.getInstance().getConnection();
+			DiagnossMapper mapper = new DiagnossMapper();
 			pstmt = con.prepareStatement(SQL_GET_DIAGNOS_BY_ID);
 			pstmt.setLong(1, id);
 			rs = pstmt.executeQuery();
-			rs.next();
-			DiagnossMapper mapper = new DiagnossMapper();
-			diagnos = mapper.mapRow(rs);
-			return diagnos;
+			if (rs.next())
+				diagnos = mapper.mapRow(rs);
+            rs.close();
+            pstmt.close();
+			// rs.next();
+			// return diagnos;
         } catch (SQLException ex) {
             DBManager.getInstance().rollbackAndClose(con);
             ex.printStackTrace();

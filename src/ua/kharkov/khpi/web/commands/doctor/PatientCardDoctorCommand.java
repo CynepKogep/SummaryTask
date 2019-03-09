@@ -52,7 +52,13 @@ public class PatientCardDoctorCommand extends Command{
 		String patient_id = request.getParameter("patient_id");
 		log.debug("patient_id:" + patient_id);
 		Patient patient = new PatientDao().getPatientById(Long.parseLong(request.getParameter("patient_id")));
+		
 		log.debug("patient.getId():" + patient.getId());
+		log.debug("patient.getDiagnosisName():" + patient.getDiagnosisName());
+		Diagnosis diagnosis_for_id = new DiagnosisDao().getDiagnosById(patient.getDiagnosis_id());
+		patient.setDiagnosisName(diagnosis_for_id.getDiagnosisName());
+		log.debug("patient.getDiagnosisName():" + patient.getDiagnosisName());
+		
 		List<PatientAssignment> patientAssignmentList = new AssignmentDao().getPatientAssignments(patient.getId());
 		for (PatientAssignment patientAssignment: patientAssignmentList) {
 			log.debug("patientAssignment:" + patientAssignment.toString());
@@ -62,8 +68,8 @@ public class PatientCardDoctorCommand extends Command{
 		for (Assignment assignment : Assignment.values()) {
 			assignmentList.add(assignment);
 		}
-		List<Diagnosis> diagnosisList =new  DiagnosisDao().GetDiagnoses();
-		
+		List<Diagnosis> diagnosisList = new  DiagnosisDao().GetDiagnoses();
+
 		request.setAttribute("diagnosisList", diagnosisList);
 		request.setAttribute("assignmentList", assignmentList);
 		request.setAttribute("patientAssignmentList", patientAssignmentList);

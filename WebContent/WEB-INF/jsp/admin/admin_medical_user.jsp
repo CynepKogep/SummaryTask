@@ -12,7 +12,6 @@
     	<fmt:message key="settings_jsp.label.localization.value" var="localization_value" />
 	    <table id="main-container">
 		    <%@ include file="/WEB-INF/jspf/header.jspf"%>
-            
 		    <tr>
 			    <td class="content">
 				<%-- CONTENT --%> 
@@ -128,8 +127,6 @@
 									<td align="center">
 						                ${bean.numberOfPatients}
 									</td>
-									
-									
 								</tr>
 							</c:forEach>
 						</table>

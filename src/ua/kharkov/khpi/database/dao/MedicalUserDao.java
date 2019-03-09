@@ -14,18 +14,6 @@ import ua.kharkov.khpi.database.manager.DBManager;
 
 public class MedicalUserDao {
 	
-	private static final String SQL_FIND_ALL_DOCTORS =
-            "SELECT * FROM medical_stuff WHERE role_id=1 OR role_id=2";
-	private static final String SQL_FIND_MED_STAFF_BY_LOGIN = "SELECT * FROM medical_stuff WHERE login=?";
-	private static final String SQL_ADD_NEW_MEDICAL_STAFF = "INSERT INTO medical_stuff(login, password, first_name, last_name, category_id, role_id) "
-																					+ "VALUES (?, ?, ?, ?, ?, ?)";
-	private static final String SQL_FIND_DOC_BY_ID = "SELECT * FROM medical_stuff WHERE id=?";
-	private static final String SQL_NUMB_OF_PATIENTS ="select count(patient.doctor_id) as Count from patient where doctor_id = ?";
-	
-
-	private static final String SQL_FIND_MEDICAL_USER_BY_ID = "SELECT * FROM medical_user WHERE id=?";
-	
-	
     // ------------------------------------------------------------------------------------------------	
 	private static final String SQL_FIND_MEDICAL_USER_BY_LOGIN = 
 	    "SELECT * FROM medical_user " +
@@ -39,34 +27,10 @@ public class MedicalUserDao {
 	private static final String SQL_ADD_NEW_MEDICAL_USER = 
 		"INSERT INTO medical_user(login, password, first_name, last_name, first_name_ru, last_name_ru, profession_id, role_id) " + 
 	    "                 VALUES (?,     ?,        ?,          ?,         ?,             ?,            ?,             ?)";
-	
-
+	private static final String SQL_FIND_MEDICAL_USER_BY_ID = 
+		"SELECT * " +
+		"FROM medical_user WHERE id=?";
 	// ------------------------------------------------------------------------------------------------
-	
-//	public MedicalUser findMedicalUserByLogin (String login)
-//	{
-//		MedicalUser user = null;
-//		PreparedStatement pstmt = null;
-//        ResultSet rs = null;
-//        Connection con = null;
-//        try {
-//			con = DBManager.getInstance().getConnection();
-//			pstmt = con.prepareStatement(SQL_FIND_MEDICAL_USER_BY_LOGIN);
-//			pstmt.setString(1, login);
-//			rs = pstmt.executeQuery();
-//			rs.next();
-//			MadicalUserMapper mapper = new MadicalUserMapper();
-//			user = mapper.mapRow(rs);
-//			return user;
-//        } catch (SQLException ex) {
-//            DBManager.getInstance().rollbackAndClose(con);
-//            ex.printStackTrace();
-//        } finally {
-//            DBManager.getInstance().commitAndClose(con);
-//        }
-//		return user;
-//	}
-	
 	public MedicalUser findMedicalUserByLogin (String login)
 	{
 		MedicalUser user = null;
@@ -181,32 +145,6 @@ public class MedicalUserDao {
 	}
 	// ----------------------------------------------------------------------------------
 	
-	
-	
-	
-	public List<MedicalUser> getDoctors() {
-		List<MedicalUser> doctorsList = new ArrayList<>();
-		Statement stmt = null;
-        ResultSet rs = null;
-        Connection con = null;
-		try {
-			con = DBManager.getInstance().getConnection();
-			stmt = con.createStatement();
-			MadicalUserMapper mapper = new MadicalUserMapper();
-            rs = stmt.executeQuery(SQL_FIND_ALL_DOCTORS);
-            while (rs.next())
-            	doctorsList.add(mapper.mapRow(rs));
-		} catch (SQLException ex) {
-            DBManager.getInstance().rollbackAndClose(con);
-            ex.printStackTrace();
-        } finally {
-            DBManager.getInstance().commitAndClose(con);
-        }
-		return doctorsList;
-	}
-	
-
-	
 	public MedicalUser getDoctorById(long id) {
 		MedicalUser med = null;
 		PreparedStatement pstmt = null;
@@ -214,7 +152,7 @@ public class MedicalUserDao {
         Connection con = null;
         try {
 			con = DBManager.getInstance().getConnection();
-			pstmt = con.prepareStatement(SQL_FIND_DOC_BY_ID);
+			pstmt = con.prepareStatement(SQL_FIND_MEDICAL_USER_BY_ID);
 			pstmt.setLong(1, id);
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -228,53 +166,6 @@ public class MedicalUserDao {
             DBManager.getInstance().commitAndClose(con);
         }
 		return med;
-	}
-	
-
-	public MedicalUser getMedByLogin (String login) {
-		MedicalUser med = null;
-		PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        Connection con = null;
-        try {
-			con = DBManager.getInstance().getConnection();
-			pstmt = con.prepareStatement(SQL_FIND_MED_STAFF_BY_LOGIN);
-			pstmt.setString(1, login);
-			rs = pstmt.executeQuery();
-			rs.next();
-			MadicalUserMapper mapper = new MadicalUserMapper();
-			med = mapper.mapRow(rs);
-			return med;
-        } catch (SQLException ex) {
-            DBManager.getInstance().rollbackAndClose(con);
-            ex.printStackTrace();
-        } finally {
-            DBManager.getInstance().commitAndClose(con);
-        }
-		return med;
-	}
-	
-	public void addMedicalStaff(MedicalUser med) {
-		PreparedStatement pstmt = null;
-        Connection con = null;
-		try {
-			int k = 1;
-			con = DBManager.getInstance().getConnection();
-			pstmt = con.prepareStatement(SQL_ADD_NEW_MEDICAL_STAFF);
-			pstmt.setString(k++,med.getLogin());
-			pstmt.setString(k++,med.getPassword());
-			pstmt.setString(k++,med.getFirstName());
-			pstmt.setString(k++,med.getLastName());
-			pstmt.setInt(k++,med.getProfessionId());
-			pstmt.setInt(k++,med.getRoleId());
-			pstmt.executeUpdate();
-	        pstmt.close();  
-		} catch (SQLException ex) {
-            DBManager.getInstance().rollbackAndClose(con);
-            ex.printStackTrace();
-        } finally {
-            DBManager.getInstance().commitAndClose(con);
-        }
-	}
+	}	
 
 }

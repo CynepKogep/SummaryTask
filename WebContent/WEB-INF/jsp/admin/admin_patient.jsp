@@ -18,12 +18,7 @@
 				<%-- CONTENT --%> 
 				<div>
 					<div style="display: inline-block">
-						<c:if test="${localization_value=='ru'}">
-			                Сортировка
-			            </c:if>
-			            <c:if test="${localization_value=='en'}">
-			                Sorting
-			            </c:if>    
+                        <fmt:message key="resource_jsp.admin.Sorting" />:					
 					</div>
 					<form style="display: inline-block" id="make_order" action="controller">
 						<input type="hidden" name="command" value="listPatient" /> 
@@ -66,8 +61,6 @@
 							<input type="submit" value='sort by date of birth' />
 						</c:if>
 					</form>
-					
-					
 				</div>
 				
 				<c:choose>
@@ -76,17 +69,16 @@
 					</c:when>
 
 					<c:otherwise>
-						<fmt:message key="settings_jsp.label.localization.value"
-							var="localization_value" />
+						<fmt:message key="settings_jsp.label.localization.value" var="localization_value" />
 						<table id="list_order_table">
 							<thead>
 								<tr>
 									<td>№</td>
-									<td><%--<fmt:message key="resource_jsp.second_name" />--%></td>
-									<td><%--<fmt:message key="resource_jsp.first_name" />--%></td>
-									<td><%--<fmt:message key="resource_jsp.access" />--%></td>
-									<td></td>
-									<td></td>
+									<td align="center"><fmt:message key="resource_jsp.admin.lastName" /></td>
+									<td align="center"><fmt:message key="resource_jsp.admin.firstName" /></td>
+									<td align="center"><fmt:message key="resource_jsp.admin.telephoneNumber" /></td>
+									<td align="center"><fmt:message key="resource_jsp.admin.email" /></td>
+									<td align="center"><fmt:message key="resource_jsp.admin.dateOfBirth" /></td>
 								</tr>
 							</thead>
 							<c:forEach var="bean" items="${patient_list}">
@@ -120,13 +112,12 @@
 									<td>
 						                ${bean.dateOfBirth}
 									</td>
-									
-									
 								</tr>
 							</c:forEach>
 						</table>
 					</c:otherwise>
-				</c:choose> <%-- CONTENT --%>
+				</c:choose> 
+				<%-- CONTENT --%>
 			</td>
 		</tr>
 		<%@ include file="/WEB-INF/jspf/footer.jspf"%>

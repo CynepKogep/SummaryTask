@@ -1,6 +1,7 @@
 /***************************************************************
 CSS for all JSP pages
 ***************************************************************/
+*{font-size: 10pt; font-family:Tahoma;}
 
 body {
 	margin: 0;
@@ -31,7 +32,9 @@ Style of the main table
 Header style (TD tag in the first top row)
 ***************************************************************/
 #header {
-	background: #FAFAD2;
+	background: #DCDCDC;
+	/*background: #AAAAFF;*/
+	/*background: #FAFAD2;*/
 	padding: 0px;
 }
 
@@ -39,7 +42,9 @@ Header style (TD tag in the first top row)
 Style for the left located head menu (DIV tag at left)
 ***************************************************************/
 #leftHeader {
-	background: #FAFAD2;
+	background: #DCDCDC;
+	/*background: #AAAAFF;*/
+	/*background: #FAFAD2;*/
 	float: left;
 	margin-left: 10px;
 	padding: 2px;
@@ -49,7 +54,9 @@ Style for the left located head menu (DIV tag at left)
 Style for the right located head menu (DIV tag at right)
 ***************************************************************/
 #rightHeader {
-	background: #FAFAD2;
+	background: #DCDCDC;
+	/*background: #AAAAFF;*
+	/*background: #FAFAD2;*/
 	float: right;
 	text-align: right;
 	margin-right: 10px;
@@ -61,7 +68,12 @@ Content styles (TD tag in the main middle row)
 ***************************************************************/
 .content {
 	height: 100%;
-	background: #BBBBFF;
+	
+	background:#F5F5F5;
+	/*background: #DCDCDC;*/
+	/*background:#F8F8FF;*/
+	/*background: #FAFAD2;*/
+	/*background: #BBBBFF;*/
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 10px;
@@ -74,7 +86,9 @@ Footer style (TD tag in the last bottom row)
 ***************************************************************/
 #footer {
 	text-align: center;
-	background: #FAFAD2;
+	background: #DCDCDC;
+	/*background: #AAAAFF;*
+	/*background: #FAFAD2;*/
 }
 
 /***************************************************************

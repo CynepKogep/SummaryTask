@@ -18,6 +18,7 @@ import ua.kharkov.khpi.database.beans.PatientAssignment;
 import ua.kharkov.khpi.database.dao.AssignmentDao;
 import ua.kharkov.khpi.database.dao.PatientDao;
 import ua.kharkov.khpi.database.enums.Role;
+import ua.kharkov.khpi.mail.SendMail;
 import ua.kharkov.khpi.web.commands.general.Command;
 
 
@@ -74,10 +75,10 @@ public class DischargePatientDoctorCommand extends Command{
 		pr.write(sb.toString());
 		pr.close();
 		
-		// SendMailSSL.SendMailToUser(patient.getEmail(), sb.toString());
-		// return new ListPatientForDoctorCommand().execute(request, response);
+		log.debug("patient.getEmail():" + patient.getEmail());
 		
-		// String information = new String(sb);		
+		SendMail.SendMailToPatient(patient.getEmail(), sb.toString());
+		 // String information = new String(sb);		
 		
 		StringBuilder sb_for_html = new StringBuilder();
 		sb_for_html.append("<p> Patient with id:" + patient.getId() + "</p>\n" + "<p>"

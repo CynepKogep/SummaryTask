@@ -17,13 +17,8 @@
 				<%-- CONTENT --%> 
 				<div>
 					<div style="display: inline-block">
-						<c:if test="${localization_value=='ru'}">
-			                Сортировка:
-			            </c:if>
-			            <c:if test="${localization_value=='en'}">
-			                Sorting:
-			            </c:if>    
-					</div>
+                        <fmt:message key="resource_jsp.doctor.Sorting"/>:					
+                    </div>
 					<form style="display: inline-block" id="make_order" action="controller">
 						<input type="hidden" name="command" value="listPatientForDoctor" /> 
 						<input type="hidden" name="sorting_order" value="sort_by_id" />
@@ -78,13 +73,13 @@
 						<table id="list_order_table">
 							<thead>
 								<tr>
-									<td>№</td>
-									<td><%--<fmt:message key="resource_jsp.second_name" />--%></td>
-									<td><%--<fmt:message key="resource_jsp.first_name" />--%></td>
-									<td><%--<fmt:message key="resource_jsp.access" />--%></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td align="center">№</td>
+									<td align="center"><fmt:message key="resource_jsp.doctor.lastName" /></td>
+									<td align="center"><fmt:message key="resource_jsp.doctor.firstName" /></td>
+									<td align="center"><fmt:message key="resource_jsp.doctor.telephoneNumber" /></td>
+									<td align="center"><fmt:message key="resource_jsp.doctor.email" /></td>
+									<td align="center"><fmt:message key="resource_jsp.doctor.dateOfBirth" /></td>
+									<td align="center"><fmt:message key="resource_jsp.doctor.CardOfPatient" /></td>
 								</tr>
 							</thead>
 							<c:forEach var="bean" items="${patient_list}">
@@ -123,7 +118,14 @@
 				                        <form action="controller" method="post">
 					                        <input type="hidden" name="command" value="patientCardDoctor" />
 					                        <input type="hidden" name="patient_id" value="${bean.getId()}"/>   
-					                        <input type="submit" class="btn btn-success" value = <fmt:message key="resource_jsp.OpenCard"/>/>
+					                        <%-- <input type="submit" class="btn btn-success" value = <fmt:message key="resource_jsp.OpenCard"/>/> --%>
+					                        <c:if test="${localization_value == 'ru'}">
+							                    <input type="submit" value='открыть карту' />
+						                    </c:if>
+						                    <c:if test="${localization_value == 'en'}">
+							                     <input type="submit" value='open card' />
+							                </c:if>
+					                        
 				                        </form>
 				                    </td>
 								</tr>

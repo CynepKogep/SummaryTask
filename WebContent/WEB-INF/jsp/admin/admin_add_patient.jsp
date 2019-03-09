@@ -24,6 +24,12 @@
 				        </c:if>
 				</c:if> 
 				<c:choose>
+					<c:when test="${error_date_of_birth != 'zero'}">
+				        ${error_date_of_birth}
+				        <a href="controller?command=RegistrationPatient"> 
+							link to "Create Patient"
+						</a>
+				    </c:when> 
 					<c:when test="${fn:length(patientList) == 0}">No such users</c:when>
 				<c:otherwise>
                    

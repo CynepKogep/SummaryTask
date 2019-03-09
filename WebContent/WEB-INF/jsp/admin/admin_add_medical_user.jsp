@@ -22,7 +22,8 @@
 					<c:if test="${localization_value == 'en'}">
 				            This user already exists!
 				        </c:if>
-				</c:if> 
+				</c:if>
+				
 				<c:choose>
 					<c:when test="${fn:length(usersList) == 0}">No such users</c:when>
 				<c:otherwise>

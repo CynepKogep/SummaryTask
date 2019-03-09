@@ -19,7 +19,7 @@
 				<%-- CONTENT --%> 
 				<div>
 					<div style="display: inline-block">
-						<fmt:message key="resource_jsp.nurse.Sorting"/> 
+						<fmt:message key="resource_jsp.nurse.Sorting"/>: 
 					</div>
 					<form style="display: inline-block" id="make_order" action="controller">
 						<input type="hidden" name="command" value="listPatientForNurse" /> 

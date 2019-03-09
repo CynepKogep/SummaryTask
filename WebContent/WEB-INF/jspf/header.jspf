@@ -24,11 +24,9 @@ This way we define the ADMIN MENU.
 						<a href="controller?command=listMedicalUser"> 
 							<fmt:message key="resource_jsp.users" />
 						</a> &nbsp;
-
     					<a href="controller?command=listPatient"> 
 							<fmt:message key="resource_jsp.patient" />
 						</a> &nbsp;
-
 						<a href="controller?command=RegistrationMedicalUser"> 
 							<fmt:message key="resource_jsp.add_medical_user" />
 						</a> &nbsp;
@@ -45,33 +43,16 @@ This way we define the DOCTOR MENU.
 						<a href="controller?command=listPatientForDoctor"> 
 							<fmt:message key="resource_jsp.doctor.Patients" />
 						</a> &nbsp;
-<%--
-	 					<a href="controller?command=listClientPays"> 
- 							<fmt:message key="resource_jsp.pays" />
-						</a> &nbsp;
-		
-						<a href="controller?command=ClientCreatePay"> 
-							<fmt:message key="resource_jsp.create_pay" /> 
-						</a> &nbsp;
-						
---%>						
+<%--=========================================================================== 
+This way we define the NURSE MENU.
+===========================================================================--%>
+
 					</c:when>
 					<c:when test="${userRole.name == 'nurse'}">
 						<a href="controller?command=listPatientForNurse"> 
 							<fmt:message key="resource_jsp.nurse.Patients" />
 						</a> &nbsp;
-<%--
-	 					<a href="controller?command=listClientPays"> 
- 							<fmt:message key="resource_jsp.pays" />
-						</a> &nbsp;
-		
-						<a href="controller?command=ClientCreatePay"> 
-							<fmt:message key="resource_jsp.create_pay" /> 
-						</a> &nbsp;
---%>						
 				    </c:when>	
-					
-					
 					
 				</c:choose>
 
@@ -128,4 +109,3 @@ Type link to logout
 		</c:if>
 	</td>
 </tr>
-

@@ -41,16 +41,32 @@ public class RegistrationPatientCommand extends Command{
 		int doctor_id_registration_int = -1;
 		if (doctor_id_registration != null)
 		    doctor_id_registration_int = Integer.parseInt(doctor_id_registration);
+		// -----------------------------------------------------------------------
+		// Had problem with to input field "date_of_birth" - validation input date  
+		// -----------------------------------------------------------------------
+		String error_date_of_birth = "zero";
 		String date_of_birth_registration = request.getParameter("date_of_birth_registration");
-		Date date_of_birth_registration_date = null ;
+		Date date_of_birth_registration_date = null;
 		if (date_of_birth_registration != null) {
 			log.debug("date_of_birth_registration:" + date_of_birth_registration);
 			log.debug("date_of_birth_registration_data:" + date_of_birth_registration_date);
-		    date_of_birth_registration_date = Date.valueOf(date_of_birth_registration);
+			try {
+				date_of_birth_registration_date = Date.valueOf(date_of_birth_registration);
+		    } catch (IllegalArgumentException e) {
+		        System.out.println(e.getMessage());
+		        log.debug(e.getMessage());
+				log.debug("date_of_birth_registration:" + date_of_birth_registration);
+				log.debug("date_of_birth_registration_data:" + date_of_birth_registration_date);
+		        log.debug("Command \"RegistrationPatientCommand\" with IllegalArgumentException finished");
+				error_date_of_birth = "Error input date of birth. Input date again!";
+				request.setAttribute("error_date_of_birth", error_date_of_birth);
+				return Path.PAGE__ADMIN_ADD_PATIENT;
+		    }
 		}
+		request.setAttribute("error_date_of_birth", error_date_of_birth);
+		// ----------------------------------------------------------------------- 
 		String telephon_number_registration = request.getParameter("telephon_number_registration");
 		String email_registration = request.getParameter("email_registration");
-
 		String name_button = request.getParameter("name_button");
 
 		log.debug("command:" + command);
@@ -60,7 +76,8 @@ public class RegistrationPatientCommand extends Command{
 		log.debug("last_name_ru_registration:" + last_name_ru_registration);
 		log.debug("doctor_id_registration:" + doctor_id_registration);
 		log.debug("doctor_id_registration_int:" + doctor_id_registration_int);
-		log.debug("date_of_birth_registration:" + date_of_birth_registration_date);
+		log.debug("date_of_birth_registration:" + date_of_birth_registration);
+		log.debug("date_of_birth_registration_date:" + date_of_birth_registration_date);
 		log.debug("telephon_number_registration:" + telephon_number_registration);
 		log.debug("email_registration:" + email_registration);
 		
@@ -70,12 +87,10 @@ public class RegistrationPatientCommand extends Command{
 		log.debug("Set the request attribute: usersList --> " + patientList);
 		int size_patientList = patientList.size();
 		
-		// request.setAttribute("patientList", patientList);
-		
 		List<MedicalUser> usersList = new MedicalUserDao().getMedicalUsers();
 		log.debug("Set the request attribute: usersList --> " + usersList);
 		int size_usersList = usersList.size();
-		log.debug("Set the request attribute: size_UserFull --> " + size_usersList);
+		log.debug("Set the request attribute: size_usersList --> " + size_usersList);
 		
 		request.setAttribute("usersList", usersList);
 		

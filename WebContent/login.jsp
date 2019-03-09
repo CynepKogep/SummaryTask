@@ -2,8 +2,14 @@
 <%@ include file="/WEB-INF/jspf/directive/taglib.jspf"%>
 
 <html>
+<%-- 
+<style>
+*{font-size: 12pt; font-family:Tahoma;}
+</style>
+--%>
 	<c:set var="title" value="Login" />
 	<%@ include file="/WEB-INF/jspf/head.jspf"%>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<body>
 <%--=========================================================================== 
 Here we use a table layout.
@@ -49,7 +55,13 @@ after you submit current form.
 							</legend>
 							<input type="password" name="password" />
 						</fieldset>
-						<br /> 
+						<br />
+						<p></p>
+						<fieldset>
+						<div class="g-recaptcha" data-sitekey="6Ld1cJYUAAAAADTFie_0YU3xaPxUIZwb3W_Riyxu"></div>
+						<%-- <span id="captcha" style="margin-left:100px;color:red"></span> --%>
+						</fieldset>
+						<p></p>
 						<input type="submit" value='<fmt:message key="resource_jsp.enter"/>'>
 					</form> 
 					<%-- CONTENT --%>
