@@ -3,6 +3,7 @@ package ua.kharkov.khpi.mail;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -49,34 +50,55 @@ public class SendMail {
 		log.trace("Commands end");
 	}
 	
-//    public static void SendMailTo(String email, String messageToUser){
-//    	log.trace("Command start");
-//    	
-//        String to   = "testsummarytask@gmail.com";         // sender email
-//        String from = "testsummarytask@gmail.com";         // receiver email
-//        String host = "127.0.0.1";            // mail server host
-//
-//        Properties properties = System.getProperties();
-//        properties.setProperty("mail.smtp.host", host);
-//
-//        Session session = Session.getDefaultInstance(properties); // default session
-//
-//        try {
-//             MimeMessage message = new MimeMessage(session); // email message
-//             message.setFrom(new InternetAddress(from));     // setting header fields
-//             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-//             message.setSubject("Test Mail from Java Program"); // subject line
-//
-//             // actual mail body
-//             message.setText(messageToUser);
-//
-//             // Send message
-//             Transport.send(message); 
-//             System.out.println("Email Sent successfully....");
-//            } catch (MessagingException mex){ 
-//            	mex.printStackTrace(); 
-//            }
+//	// TEST TLS
+//    public static void SendMailToPatientTLS(){
+//	    
+//    	final String fromEmail = "testsummarytask@gmail.com"; //requires valid gmail id
+//	    final String password = "cfknjdrf1977"; // correct password for gmail id
+//	    final String toEmail = "testsummarytask@gmail.com"; // can be any email id 
+//	
+//	    System.out.println("TLSEmail Start");
+//	    Properties props = new Properties();
+//	    props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+//	    props.put("mail.smtp.port", "587"); //TLS Port
+//	    props.put("mail.smtp.auth", "true"); //enable authentication
+//	    props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+//	
+//        //create Authenticator object to pass in Session.getInstance argument
+//	    Authenticator auth = new Authenticator() {
+//		    //override the getPasswordAuthentication method
+//		    protected PasswordAuthentication getPasswordAuthentication() {
+//			    return new PasswordAuthentication(fromEmail, password);
+//		    }
+//	   };
+//	   Session session = Session.getInstance(props, auth);
+//       sendEmail(session, toEmail,"TLSEmail Testing Subject", "TLSEmail Testing Body");
 //    }
+//	
+//	public static void sendEmail(Session session, String toEmail, String subject, String body){
+//		System.out.println("Start!");
+//		try
+//	    {
+//	      MimeMessage msg = new MimeMessage(session);
+//	      //set message headers
+//	      msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+//	      msg.addHeader("format", "flowed");
+//	      msg.addHeader("Content-Transfer-Encoding", "8bit");
+//
+//	      msg.setFrom(new InternetAddress("no_reply@example.com", "NoReply-JD"));
+//	      msg.setReplyTo(InternetAddress.parse("no_reply@example.com", false));
+//	      msg.setSubject(subject, "UTF-8");
+//	      msg.setText(body, "UTF-8");
+//	      msg.setSentDate(new Date());
+//	      msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+//	      System.out.println("Message is ready");
+//    	  Transport.send(msg);  
+//	      System.out.println("EMail Sent Successfully!!");
+//	    }
+//	    catch (Exception e) {
+//	      e.printStackTrace();
+//	    }
+//	}
 
 }
     

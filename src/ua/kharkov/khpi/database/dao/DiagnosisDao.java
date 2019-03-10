@@ -12,8 +12,8 @@ import ua.kharkov.khpi.database.beans.Diagnosis;
 import ua.kharkov.khpi.database.constants.Fields;
 import ua.kharkov.khpi.database.manager.DBManager;
 
-
 public class DiagnosisDao {
+
 	private static final String SQL_GET_DIAGNOSIS = "SELECT * FROM diagnosis";
 	private static final String SQL_GET_DIAGNOS_BY_ID = "SELECT * FROM diagnosis WHERE id = ?";
 	

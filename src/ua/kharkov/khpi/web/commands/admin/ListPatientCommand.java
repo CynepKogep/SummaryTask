@@ -70,5 +70,4 @@ public class ListPatientCommand extends Command {
 		
 		return Path.PAGE__ADMIN_PATIENT;
 	}
-
 }

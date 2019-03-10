@@ -115,6 +115,4 @@ public class Patient extends Entity {
 				+ ", diagnosis_id=" + diagnosis_id + ", diagnosisName=" + diagnosisName + "]";
 	}
 	
-	
-	
 }

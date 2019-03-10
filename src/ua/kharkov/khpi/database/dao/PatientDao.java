@@ -59,7 +59,7 @@ public class PatientDao {
 			DBManager.getInstance().commitAndClose(con);
 		}
 	}
-	//!
+	
 	public Patient getPatientById(Long id) {
 		Patient patient = null;
 		PreparedStatement pstmt = null;

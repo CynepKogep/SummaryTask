@@ -171,5 +171,4 @@ public class MedicalUserDao {
         }
 		return med;
 	}	
-
 }

@@ -12,7 +12,6 @@ import ua.kharkov.khpi.database.beans.PatientAssignment;
 import ua.kharkov.khpi.database.constants.Fields;
 import ua.kharkov.khpi.database.manager.DBManager;
 
-
 public class AssignmentDao {
 
 	private static final String SQL_FIND_ALL_ASSIGNMENT = 

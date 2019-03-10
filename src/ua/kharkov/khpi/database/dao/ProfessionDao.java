@@ -13,6 +13,7 @@ import ua.kharkov.khpi.database.constants.Fields;
 import ua.kharkov.khpi.database.manager.DBManager;
 
 public class ProfessionDao {
+
 	private static final String SQL_FIND_ALL_PROFESSION = "SELECT * FROM profession GROUP BY id;";
 	private static final String SQL_GET_PROFESSION_BY_ID = "SELECT * FROM profession WHERE ID = ?";
 
@@ -76,5 +77,4 @@ public class ProfessionDao {
 			}
 		}
 	}
-	
 }

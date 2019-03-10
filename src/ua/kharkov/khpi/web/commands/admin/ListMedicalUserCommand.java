@@ -108,6 +108,4 @@ public class ListMedicalUserCommand extends Command{
 		
 		return Path.PAGE__ADMIN_MEDICAL_USER;
 	}
-
-
 }

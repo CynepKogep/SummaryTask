@@ -4,7 +4,6 @@ import ua.kharkov.khpi.database.enums.Assignment;
 import ua.kharkov.khpi.database.enums.Status;
 
 
-// назначение
 public class PatientAssignment extends Entity {
 
 	private static final long serialVersionUID = 8467257860808346237L;
@@ -16,7 +15,6 @@ public class PatientAssignment extends Entity {
 	//util fields
 	private String assignmentName;
 	private String assignmentStatusName;
-	
 
 	public String getAssignmentName() {
 		if(assignmentName == null) {

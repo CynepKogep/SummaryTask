@@ -15,8 +15,7 @@ public class MedicalUser extends Entity {
 	
 	private String professionName;
 	private String professionNameRu;
-	
-	
+
 	private Integer numberOfPatients = null;
 	
 	public Integer getNumberOfPatients() {
@@ -92,7 +91,5 @@ public class MedicalUser extends Entity {
 				+ professionId + ", roleId=" + roleId + ", professionName=" + professionName + ", professionNameRu="
 				+ professionNameRu + "]";
 	}
-
-	
 
 }

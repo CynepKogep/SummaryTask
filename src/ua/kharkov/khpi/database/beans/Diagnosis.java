@@ -28,5 +28,4 @@ public class Diagnosis extends Entity{
 		return "Diagnosis [diagnosisName=" + diagnosisName + ", diagnosisNameRu=" + diagnosisNameRu + "]";
 	}
 	
-	
 }

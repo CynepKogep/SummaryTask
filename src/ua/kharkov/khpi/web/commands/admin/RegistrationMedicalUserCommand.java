@@ -151,5 +151,4 @@ public class RegistrationMedicalUserCommand extends Command{
 		log.debug("Command \"RegistrationMedicalUserCommand\" finished");
 		return Path.PAGE__ADMIN_ADD_MEDICAL_USER;
 	}
-
 }

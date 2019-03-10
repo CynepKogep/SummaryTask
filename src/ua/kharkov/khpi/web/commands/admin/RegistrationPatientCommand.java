@@ -166,5 +166,4 @@ public class RegistrationPatientCommand extends Command{
 		log.debug("Command \"RegistrationPatientCommand\" finished");
 		return Path.PAGE__ADMIN_ADD_PATIENT;
 	}
-
 }

@@ -120,7 +120,6 @@ public class DBManager {
 		connection.setAutoCommit(false);
 		return connection;
 	}
-	
+
 	/**************************************************************/
-	
 }
