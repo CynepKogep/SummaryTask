@@ -17,6 +17,7 @@ import ua.kharkov.khpi.constants.Path;
 import ua.kharkov.khpi.database.beans.MedicalUser;
 import ua.kharkov.khpi.database.dao.MedicalUserDao;
 import ua.kharkov.khpi.database.dao.ProfessionDao;
+import ua.kharkov.khpi.database.enums.Role;
 import ua.kharkov.khpi.web.commands.general.Command;
 
 public class ListMedicalUserCommand extends Command{
@@ -45,7 +46,25 @@ public class ListMedicalUserCommand extends Command{
 			HttpServletResponse response) throws IOException, ServletException {
 		
 		log.debug("Commands \"ListMedicalUserCommand\" starts");
-				
+		
+		String errorMessage = null;
+		String forward = Path.PAGE__ERROR_PAGE;
+		log.debug("request.getSession(false):" + request.getSession(false));
+		
+		// check the session
+		if (request.getSession(false) == null) {
+			errorMessage = "You are not register";
+			request.setAttribute("errorMessage", errorMessage);
+			return forward;
+		}
+		// check the role
+		if (request.getSession(false).getAttribute("userRole") == null
+				|| !request.getSession(false).getAttribute("userRole").equals(Role.ADMIN)) {
+			errorMessage = "Wrong priviliges";
+			request.setAttribute("errorMessage", errorMessage);
+			return forward;
+		}
+	
 		String localeToSet = request.getParameter("localeToSet");
 		log.debug("localeToSet:" + localeToSet);
 		

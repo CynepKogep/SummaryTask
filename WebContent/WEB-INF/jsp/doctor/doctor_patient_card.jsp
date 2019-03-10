@@ -80,14 +80,14 @@
                        <%-- TABLE CurrentAssignment  --%>
                        <%-- -----------------------------------  --%>
 		               <fmt:message key="resource_jsp.doctor.CurrentAssignment"/>:
-			           <div class="scrollingTable">
+			           <div>
 			               <table id="list1">
 					           <thead>
 						           <tr>
-			    	                   <td align="center">ID</td>
-				                       <td align="center"><fmt:message key="resource_jsp.doctor.Assignment"/></td>
-					                   <td align="center"><fmt:message key="resource_jsp.doctor.AssignmentStatus"/></td>
-					                   <td align="center"><fmt:message key="resource_jsp.doctor.CompleteAssignment"/></td>
+			    	                   <td align="center" bgcolor="#E0E0E0">ID</td>
+				                       <td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.Assignment"/></td>
+					                   <td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.AssignmentStatus"/></td>
+					                   <td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.CompleteAssignment"/></td>
 						           </tr>
 					           </thead>
 					           <c:forEach var="bean" items="${patientAssignmentList}">
@@ -102,7 +102,7 @@
 								           <td>
                                                ${bean.getAssignmentStatusName()}						                
 					                       </td>
-								           <td>
+								           <td valign="middle" align="center">
 					                           <form action="controller" method="post">
 					                               <input type="hidden" name="command" value="completeAssignmentDoctor" />
 					                               <input type="hidden" name="patient_id" value="${patient.id}" />
@@ -125,13 +125,13 @@
                        <%-- TABLE CompleteAssignments  --%>
                        <%-- -----------------------------------  --%>
 			           <fmt:message key="resource_jsp.doctor.CompleteAssignments"/>:
-			           <div class="scrollingTable">
+			           <div>
 				           <table id="list2">
 					           <thead>
 						           <tr>
-    			                       <td align="center">ID</td>
-				                       <td align="center"><fmt:message key="resource_jsp.doctor.Assignment"/></td>
-				                       <td align="center"><fmt:message key="resource_jsp.doctor.AssignmentStatus"/></td>
+    			                       <td align="center" bgcolor="#E0E0E0">ID</td>
+				                       <td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.Assignment"/></td>
+				                       <td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.AssignmentStatus"/></td>
 						           </tr>
 					           </thead>
 					           <c:forEach var="bean2" items="${patientAssignmentList}">

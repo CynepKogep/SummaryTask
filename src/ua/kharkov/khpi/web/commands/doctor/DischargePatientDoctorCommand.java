@@ -40,21 +40,18 @@ public class DischargePatientDoctorCommand extends Command{
 		if (request.getSession(false) == null) {
 			errorMessage = "You are not register";
 			request.setAttribute("errorMessage", errorMessage);
-
 			return forward;
 		}
-//		//check the role
-//		if (request.getSession(false).getAttribute("medRole") == null ||
-//				!request.getSession(false).getAttribute("medRole").equals(Role.DOCTOR)) {
-//			errorMessage = "Wrong priviliges";
-//			request.setAttribute("errorMessage", errorMessage);
-//
-//			return forward;
-//		}
+		//check the role
+		if (request.getSession(false).getAttribute("userRole") == null ||
+				!request.getSession(false).getAttribute("userRole").equals(Role.DOCTOR)) {
+			errorMessage = "Wrong priviliges";
+			request.setAttribute("errorMessage", errorMessage);
+			return forward;
+		}
 		
 		long id = Long.parseLong(request.getParameter("patient_id"));
 		new PatientDao().DischargedPatient(id);
-		
 		
 		Patient patient = new PatientDao().getPatientById(id);
 		List<PatientAssignment> patient_assignment = new AssignmentDao().getPatientAssignments(id);

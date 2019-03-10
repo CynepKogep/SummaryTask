@@ -18,6 +18,7 @@ import ua.kharkov.khpi.database.dao.AssignmentDao;
 import ua.kharkov.khpi.database.dao.DiagnosisDao;
 import ua.kharkov.khpi.database.dao.PatientDao;
 import ua.kharkov.khpi.database.enums.Assignment;
+import ua.kharkov.khpi.database.enums.Role;
 import ua.kharkov.khpi.web.commands.general.Command;
 
 public class PatientCardNurseCommand extends Command{
@@ -33,24 +34,33 @@ public class PatientCardNurseCommand extends Command{
 		
 		String errorMessage = null;
 		String forward = Path.PAGE__ERROR_PAGE;
+		log.debug("request.getSession(false):" + request.getSession(false));
 		
 		//check the session
 		if (request.getSession(false) == null) {
 			errorMessage = "You are not register";
 			request.setAttribute("errorMessage", errorMessage);
-
 			return forward;
 		}
-//		//check the role
-//		if (request.getSession(false).getAttribute("medRole") == null ||
-//				!request.getSession(false).getAttribute("medRole").equals(Role.DOCTOR)) {
-//			errorMessage = "Wrong priviliges";
-//			request.setAttribute("errorMessage", errorMessage);
-//			return forward;
-//		}
+
+		//check the role
+		if (request.getSession(false).getAttribute("userRole") == null ||
+				!request.getSession(false).getAttribute("userRole").equals(Role.NURSE)) {
+			errorMessage = "Wrong priviliges";
+			request.setAttribute("errorMessage", errorMessage);
+			return forward;
+		}
+		
 		String patient_id = request.getParameter("patient_id");
 		log.debug("patient_id:" + patient_id);
 		Patient patient = new PatientDao().getPatientById(Long.parseLong(request.getParameter("patient_id")));
+		
+		log.debug("patient.getId():" + patient.getId());
+		log.debug("patient.getDiagnosisName():" + patient.getDiagnosisName());
+		Diagnosis diagnosis_for_id = new DiagnosisDao().getDiagnosById(patient.getDiagnosis_id());
+		patient.setDiagnosisName(diagnosis_for_id.getDiagnosisName());
+		log.debug("patient.getDiagnosisName():" + patient.getDiagnosisName());
+		
 		List<PatientAssignment> patientAssignmentList = new AssignmentDao().getPatientAssignments(patient.getId());
 		for (PatientAssignment patientAssignment: patientAssignmentList) {
 			log.debug("patientAssignment:" + patientAssignment.toString());

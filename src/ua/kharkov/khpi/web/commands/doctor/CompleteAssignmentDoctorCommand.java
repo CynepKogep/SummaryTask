@@ -36,22 +36,16 @@ public class CompleteAssignmentDoctorCommand extends Command{
 
 			return forward;
 		}
-//		//check the role
-//		if (request.getSession(false).getAttribute("medRole") == null ||
-//				!request.getSession(false).getAttribute("medRole").equals(Role.DOCTOR)) {
-//			errorMessage = "Wrong priviliges";
-//			request.setAttribute("errorMessage", errorMessage);
-//
-//			return forward;
-//		}
+		//check the role
+		if (request.getSession(false).getAttribute("userRole") == null ||
+				!request.getSession(false).getAttribute("userRole").equals(Role.DOCTOR)) {
+			errorMessage = "Wrong priviliges";
+			request.setAttribute("errorMessage", errorMessage);
+			return forward;
+		}
 		
 		int assignment_id = Integer.parseInt(request.getParameter("assignment_id"));
 		new AssignmentDao().CompleteAssignmentById(assignment_id);	
-		
-//		if(request.getParameter("medicalCard") != null &&
-//					request.getParameter("medicalCard").equals("medical_card")) {
-//			return new OpenMedicalCardCommand().execute(request, response);
-//		}
 		
 		log.debug("Commands \"CompleteAssignmentDoctorCommand\" finished");
 		

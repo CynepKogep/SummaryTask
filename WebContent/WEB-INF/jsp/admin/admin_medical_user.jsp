@@ -83,12 +83,12 @@
 						<table id="list_medical_user">
 							<thead>
 								<tr>
-									<td align="center">№</td>
-									<td align="center"><fmt:message key="resource_jsp.admin.login" /></td>
-									<td align="center"><fmt:message key="resource_jsp.admin.lastName" /></td>
-									<td align="center"><fmt:message key="resource_jsp.admin.firstName" /></td>
-									<td align="center"><fmt:message key="resource_jsp.admin.professionName"/></td>
-									<td align="center"><fmt:message key="resource_jsp.admin.numberOfPatients"/></td>
+									<td align="center" bgcolor="#E0E0E0">№</td>
+									<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.admin.login" /></td>
+									<td align="center" bgcolor="#E0E0E0""><fmt:message key="resource_jsp.admin.lastName" /></td>
+									<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.admin.firstName" /></td>
+									<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.admin.professionName"/></td>
+									<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.admin.numberOfPatients"/></td>
 								</tr>
 							</thead>
 							<c:forEach var="bean" items="${usersList}">

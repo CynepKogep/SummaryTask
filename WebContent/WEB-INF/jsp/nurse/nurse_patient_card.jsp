@@ -38,8 +38,12 @@
 			<%-- -----------------------------------  --%>
             <%-- FORM Current Diagnose  --%>
             <%-- -----------------------------------  --%>
-<%--
-            <fmt:message key="resource_jsp.CurrentDiagnose"/>: ${patient.diagnosisName}
+            <strong>
+            <fmt:message key="resource_jsp.CurrentDiagnose"/>: 
+            </strong>
+            ${patient.diagnosisName}
+            <p> </p>
+<%--            
             <form action="controller" method="post">
 	            <input type="hidden" name="command" value="setDiagnosisDoctor" />
 	            <input type="hidden" name="patient_id" value="${patient.id}" />
@@ -71,18 +75,19 @@
 				    <input type="submit" value='Submit request' />
 				</c:if>
             </form>	
+            <p> </p>
             <%-- -----------------------------------  --%>
             <%-- TABLE CurrentAssignment  --%>
             <%-- -----------------------------------  --%>
 		    <fmt:message key="resource_jsp.nurse.CurrentAssignment"/>:
-		    <div class="scrollingTable">
+		    <div>
     			<table id="list1">
 	    			<thead>
 		    			<tr>
-			    			<td align="center">ID</td>
-							<td align="center"><fmt:message key="resource_jsp.nurse.Assignment"/></td>
-							<td align="center"><fmt:message key="resource_jsp.nurse.AssignmentStatus"/></td>
-							<td align="center"><fmt:message key="resource_jsp.nurse.CompleteAssignment"/></td>
+			    			<td align="center" bgcolor="#E0E0E0">ID</td>
+							<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.nurse.Assignment"/></td>
+							<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.nurse.AssignmentStatus"/></td>
+							<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.nurse.CompleteAssignment"/></td>
 						</tr>
 					</thead>
 					<c:forEach var="bean" items="${patientAssignmentList}">
@@ -97,7 +102,7 @@
 							    <td>
                                     ${bean.getAssignmentStatusName()}						                
 						        </td>
-								<td align="center">
+								<td valign="middle" align="center">
 					                <form action="controller" method="post">
 					                    <input type="hidden" name="command" value="completeAssignmentNurse" />
 					                    <input type="hidden" name="patient_id" value="${patient.id}" />
@@ -117,13 +122,13 @@
 					    </div>
 					    <p></p>
 						<fmt:message key="resource_jsp.nurse.CompleteAssignments"/>:
-						    <div class="scrollingTable">
+						    <div>
 						    <table id="list2">
 						        <thead>
 							        <tr>
-			    			            <td align="center">ID</td>
-							            <td align="center"><fmt:message key="resource_jsp.nurse.Assignment"/></td>
-							            <td align="center"><fmt:message key="resource_jsp.nurse.AssignmentStatus"/></td>
+			    			            <td align="center" bgcolor="#E0E0E0">ID</td>
+							            <td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.nurse.Assignment"/></td>
+							            <td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.nurse.AssignmentStatus"/></td>
 							        </tr>
 						        </thead>
 							    <c:forEach var="bean2" items="${patientAssignmentList}">

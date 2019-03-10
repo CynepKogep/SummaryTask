@@ -4,6 +4,8 @@ Footer (bottom area).
 
 <tr>
 	<td id="footer">
-		&copy;VIP Payments (SummaryTask, EPAM-KHPI Java	Training), 2019
+		&copy;VIP Hospital (SummaryTask, EPAM-KHPI Java	Training), 2019 <a href="https://github.com/CynepKogep/SummaryTask"> 
+							 &lt;&lt;Project on GitHub.&gt;&gt;
+						</a>
 	</td>
 </tr>

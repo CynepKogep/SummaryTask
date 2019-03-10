@@ -31,6 +31,24 @@ public class RegistrationPatientCommand extends Command{
 
 		log.debug("Command \"RegistrationPatientCommand\" starts");
 		
+		String errorMessage = null;
+		String forward = Path.PAGE__ERROR_PAGE;
+		log.debug("request.getSession(false):" + request.getSession(false));
+		
+		// check the session
+		if (request.getSession(false) == null) {
+			errorMessage = "You are not register";
+			request.setAttribute("errorMessage", errorMessage);
+			return forward;
+		}
+		// check the role
+		if (request.getSession(false).getAttribute("userRole") == null
+				|| !request.getSession(false).getAttribute("userRole").equals(Role.ADMIN)) {
+			errorMessage = "Wrong priviliges";
+			request.setAttribute("errorMessage", errorMessage);
+			return forward;
+		}
+		
 		String command = request.getParameter("command");
 		
 		String first_name_registration = request.getParameter("first_name_registration");

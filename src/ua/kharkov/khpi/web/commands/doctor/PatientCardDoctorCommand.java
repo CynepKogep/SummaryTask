@@ -42,13 +42,14 @@ public class PatientCardDoctorCommand extends Command{
 			request.setAttribute("errorMessage", errorMessage);
 			return forward;
 		}
-//		//check the role
-//		if (request.getSession(false).getAttribute("medRole") == null ||
-//				!request.getSession(false).getAttribute("medRole").equals(Role.DOCTOR)) {
-//			errorMessage = "Wrong priviliges";
-//			request.setAttribute("errorMessage", errorMessage);
-//			return forward;
-//		}
+		//check the role
+		if (request.getSession(false).getAttribute("userRole") == null ||
+				!request.getSession(false).getAttribute("userRole").equals(Role.DOCTOR)) {
+			errorMessage = "Wrong priviliges";
+			request.setAttribute("errorMessage", errorMessage);
+			return forward;
+		}
+		
 		String patient_id = request.getParameter("patient_id");
 		log.debug("patient_id:" + patient_id);
 		Patient patient = new PatientDao().getPatientById(Long.parseLong(request.getParameter("patient_id")));

@@ -19,6 +19,7 @@
 					<div style="display: inline-block">
                         <fmt:message key="resource_jsp.doctor.Sorting"/>:					
                     </div>
+                    <%--
 					<form style="display: inline-block" id="make_order" action="controller">
 						<input type="hidden" name="command" value="listPatientForDoctor" /> 
 						<input type="hidden" name="sorting_order" value="sort_by_id" />
@@ -29,6 +30,7 @@
 							<input type="submit" value='sort by id' />
 						</c:if>
 					</form>
+					--%>
 					<form style="display: inline-block" id="make_order" action="controller">
 						<input type="hidden" name="command" value="listPatientForDoctor" /> 
 						<c:if test="${localization_value == 'ru'}">
@@ -40,6 +42,7 @@
 							<input type="submit" value='sort by lastname' />
 						</c:if>
 					</form>
+					<%--
 					<form style="display: inline-block" id="make_order" action="controller">
 						<input type="hidden" name="command" value="listPatientForDoctor" /> 
 						<input type="hidden" name="sorting_order" value="sort_by_email" />
@@ -50,6 +53,7 @@
 							<input type="submit" value='sort by email' />
 						</c:if>
 					</form>
+					--%>
 					<form style="display: inline-block" id="make_order" action="controller">
 						<input type="hidden" name="command" value="listPatientForDoctor" /> 
 						<input type="hidden" name="sorting_order" value="sort_by_date_of_birth" />
@@ -73,13 +77,13 @@
 						<table id="list_order_table">
 							<thead>
 								<tr>
-									<td align="center">№</td>
-									<td align="center"><fmt:message key="resource_jsp.doctor.lastName" /></td>
-									<td align="center"><fmt:message key="resource_jsp.doctor.firstName" /></td>
-									<td align="center"><fmt:message key="resource_jsp.doctor.telephoneNumber" /></td>
-									<td align="center"><fmt:message key="resource_jsp.doctor.email" /></td>
-									<td align="center"><fmt:message key="resource_jsp.doctor.dateOfBirth" /></td>
-									<td align="center"><fmt:message key="resource_jsp.doctor.CardOfPatient" /></td>
+									<td align="center" bgcolor="#E0E0E0">№</td>
+									<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.lastName" /></td>
+									<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.firstName" /></td>
+									<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.telephoneNumber" /></td>
+									<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.email" /></td>
+									<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.dateOfBirth" /></td>
+									<td align="center" bgcolor="#E0E0E0"><fmt:message key="resource_jsp.doctor.CardOfPatient" /></td>
 								</tr>
 							</thead>
 							<c:forEach var="bean" items="${patient_list}">
@@ -114,7 +118,7 @@
 									<td>
 						                ${bean.dateOfBirth}
 									</td>
-									<td>
+									<td align="center" style="vertical-align: middle">
 				                        <form action="controller" method="post">
 					                        <input type="hidden" name="command" value="patientCardDoctor" />
 					                        <input type="hidden" name="patient_id" value="${bean.getId()}"/>   

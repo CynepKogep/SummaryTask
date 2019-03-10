@@ -9,7 +9,12 @@
 --%>
 	<c:set var="title" value="Login" />
 	<%@ include file="/WEB-INF/jspf/head.jspf"%>
+<%--	
+	<script type ="text/javascript" src='js/api.js'></script>
+--%> 
 	<script src='https://www.google.com/recaptcha/api.js'></script>
+
+	
 	<body>
 <%--=========================================================================== 
 Here we use a table layout.

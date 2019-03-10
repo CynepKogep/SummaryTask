@@ -131,9 +131,6 @@ public class CommandAccessFilter implements Filter {
 		log.debug("commons.contains(commandName) = " + b);
 
 		return a||b;
-		
-//		return accessMap.get(userRole).contains(commandName)
-//				|| commons.contains(commandName);
 
 	}
 
