@@ -68,6 +68,7 @@ public class MedicalUserDao {
             rs = stmt.executeQuery(SQL_FIND_MEDICAL_USER);
             while (rs.next())
             	doctorsList.add(mapper.mapRow(rs));
+            rs.close();
 		} catch (SQLException ex) {
             DBManager.getInstance().rollbackAndClose(con);
             ex.printStackTrace();
@@ -87,8 +88,10 @@ public class MedicalUserDao {
 			pstmt = con.prepareStatement(SQL_NUMBUR_OF_PATIENTS);
 			pstmt.setLong(1, id);
 			rs = pstmt.executeQuery();
-			rs.next();
-			count = Integer.parseInt(rs.getString("Count"));
+			if (rs.next())
+			    count = Integer.parseInt(rs.getString("Count"));
+            rs.close();
+            pstmt.close();
 		} catch (Exception ex) {
 			DBManager.getInstance().rollbackAndClose(con);
             ex.printStackTrace();
@@ -152,13 +155,14 @@ public class MedicalUserDao {
         Connection con = null;
         try {
 			con = DBManager.getInstance().getConnection();
+			MadicalUserMapper mapper = new MadicalUserMapper();
 			pstmt = con.prepareStatement(SQL_FIND_MEDICAL_USER_BY_ID);
 			pstmt.setLong(1, id);
 			rs = pstmt.executeQuery();
-			rs.next();
-			MadicalUserMapper mapper = new MadicalUserMapper();
-			med = mapper.mapRow(rs);
-			return med;
+			if (rs.next())
+			    med = mapper.mapRow(rs);
+            rs.close();
+            pstmt.close();
         } catch (SQLException ex) {
             DBManager.getInstance().rollbackAndClose(con);
             ex.printStackTrace();

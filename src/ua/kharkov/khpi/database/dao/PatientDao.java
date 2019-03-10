@@ -59,7 +59,7 @@ public class PatientDao {
 			DBManager.getInstance().commitAndClose(con);
 		}
 	}
-	
+	//!
 	public Patient getPatientById(Long id) {
 		Patient patient = null;
 		PreparedStatement pstmt = null;
@@ -67,12 +67,14 @@ public class PatientDao {
 		Connection con = null;
 		try {
 			con = DBManager.getInstance().getConnection();
+			PatientMapper mapper = new PatientMapper();
 			pstmt = con.prepareStatement(SQL_FIND_PATIENT_BY_ID);
 			pstmt.setLong(1, id);
 			rs = pstmt.executeQuery();
-			rs.next();
-			PatientMapper mapper = new PatientMapper();
-			patient = mapper.mapRow(rs);
+			if (rs.next())
+			    patient = mapper.mapRow(rs);
+            rs.close();
+            pstmt.close();
 		} catch (SQLException ex) {
 			DBManager.getInstance().rollbackAndClose(con);
 			ex.printStackTrace();

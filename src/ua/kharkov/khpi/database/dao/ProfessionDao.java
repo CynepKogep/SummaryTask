@@ -45,13 +45,14 @@ public class ProfessionDao {
         Connection con = null;
         try {
 			con = DBManager.getInstance().getConnection();
+			ProfessionMapper mapper = new ProfessionMapper();
 			pstmt = con.prepareStatement(SQL_GET_PROFESSION_BY_ID);
 			pstmt.setLong(1, id);
 			rs = pstmt.executeQuery();
-			rs.next();
-			ProfessionMapper mapper = new ProfessionMapper();
-			profession = mapper.mapRow(rs);
-			return profession;
+			if(rs.next())
+			    profession = mapper.mapRow(rs);
+            rs.close();
+            pstmt.close();
         } catch (SQLException ex) {
             DBManager.getInstance().rollbackAndClose(con);
             ex.printStackTrace();
